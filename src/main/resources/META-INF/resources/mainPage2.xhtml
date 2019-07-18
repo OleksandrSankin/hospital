@@ -13,27 +13,25 @@
 
 <h:body>
 
+    <h:form>
     <div class="ui-g">
         <div class="ui-g-3">
             <h:graphicImage library="images" name="tucnak.png" width="43%"/>
         </div>
         <div class="ui-g-1"></div>
-        <div class="ui-g-2">
-            <p:commandLink id="menu1">
-                <h:outputText value="menu 1"/>
-            </p:commandLink>
+        <div class="ui-g-2" style="padding-top: 3%">
+            <p:commandButton value="menu 1"/>
         </div>
-        <div class="ui-g-2">
-            <p:commandLink id="menu2">
-                <h:outputText value="menu 2"/>
-            </p:commandLink>
+        <div class="ui-g-2" style="padding-top: 3%">
+            <p:commandButton value="menu 2"/>
         </div>
-        <div class="ui-g-2">
-            <p:commandLink id="menu3">
-                <h:outputText value="menu 3"/>
-            </p:commandLink>
+        <div class="ui-g-2" style="padding-top: 3%">
+            <p:commandButton value="вход" oncomplete="PF('Vchod').show();" update="vchod"/>
+<!--            <p:commandLink id="menu3">-->
+<!--                <h:outputText value="menu 3" oncomplete="PF('myDialog').show();" update="mydialog"/>-->
+<!--            </p:commandLink>-->
         </div>
-        <div class="ui-g-1" align="right">
+        <div class="ui-g-1" align="right" style="padding-top: 3%">
             <p:commandButton value=" ? "/>
         </div>
 <!--                <div class="ui-g-1">-->
@@ -91,7 +89,7 @@
         </div>
 
         <div class="p-col">
-            <div class="box" style="height: 200px; background-color: darkslategrey">
+            <div class="box" style="height: 200px; background-color: lightblue;">
                 <div class="ui-g">
                     <div class="ui-g-6">
                         <pre>
@@ -111,9 +109,26 @@
                     </div>
                 </div>
 
+
             </div>
         </div>
     </div>
+    </h:form>
+
+
+
+    <p:dialog id="vchod" widgetVar="Vchod">
+        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+            <p:outputLabel value=" Name:"/>
+            <p:inputText value="#{homeController.name}"/>
+            <p:outputLabel value=" Surname:"/>
+            <p:inputText value="#{homeController.surname}"/>
+            <p:commandButton value="OK" />
+        </h:panelGrid>
+    </p:dialog>
+
+
+
 </h:body>
 </html>
 

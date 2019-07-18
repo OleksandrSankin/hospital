@@ -13,9 +13,9 @@
 
 <h:body>
 
-    <p:panelGrid columns="8" style="width: 100%;height: 10%; border: none !important; border-color: white">
+    <p:panelGrid columns="7" style="width: 100%;height: 10%; border: none !important; border-color: #9bffd0">
         <f:selectItem>
-            <h:graphicImage library="images" name="tucnak.png" style="size: A5" width="17%" height="12%"/>
+            <h:graphicImage library="images" name="tucnak.png" width="17%" height="12%"/>
         </f:selectItem>
         <f:selectItems style="border: none;">
             <p:commandButton value="button1"/>
@@ -27,8 +27,8 @@
         </f:selectItem>
         <f:selectItem>
             <p:commandLink id="ajax1">
-            <h:outputText value="menu 2"/>
-        </p:commandLink>
+                <h:outputText value="menu 2"/>
+            </p:commandLink>
         </f:selectItem>
         <f:selectItem>
             <p:commandLink id="ajax2">
@@ -40,7 +40,11 @@
                 <h:outputText value="menu 4"/>
             </p:commandLink>
         </f:selectItem>
-        <f:selectItem style="width:7%;">looking for</f:selectItem>
+        <f:selectItem >
+            <p:button icon="pi pi-star" style="margin-right:20px;" title="Icon Only">
+                <f:param name="productId" value="30"/>
+            </p:button>
+        </f:selectItem>
     </p:panelGrid>
 
     <div class="p-grid p-dir-col">

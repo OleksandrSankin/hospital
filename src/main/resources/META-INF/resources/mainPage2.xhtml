@@ -23,10 +23,10 @@
             <p:commandButton value="menu 1"/>
         </div>
         <div class="ui-g-2" style="padding-top: 3%">
-            <p:commandButton value="menu 2"/>
+            <p:commandButton value="регистрация" oncomplete="PF('Registr').show();"/>
         </div>
         <div class="ui-g-2" style="padding-top: 3%">
-            <p:commandButton value="вход" oncomplete="PF('Vchod').show();" update="vchod"/>
+            <p:commandButton value="вход" oncomplete="PF('Vchod').show();" />
 <!--            <p:commandLink id="menu3">-->
 <!--                <h:outputText value="menu 3" oncomplete="PF('myDialog').show();" update="mydialog"/>-->
 <!--            </p:commandLink>-->
@@ -119,15 +119,23 @@
 
     <p:dialog id="vchod" widgetVar="Vchod">
         <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-            <p:outputLabel value=" Name:"/>
+            <p:outputLabel value=" Имя:"/>
             <p:inputText value="#{homeController.name}"/>
-            <p:outputLabel value=" Surname:"/>
+            <p:outputLabel value=" Фамилия:"/>
             <p:inputText value="#{homeController.surname}"/>
             <p:commandButton value="OK" />
         </h:panelGrid>
     </p:dialog>
 
-
+    <p:dialog id="registrace" widgetVar="Registr">
+        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+            <p:outputLabel value=" Номер телефона:"/>
+            <p:inputText value="+380 #{homeController.name}"/>
+            <p:outputLabel value=" E-mail:"/>
+            <p:inputText value="#{homeController.surname}"/>
+            <p:commandButton value="OK" />
+        </h:panelGrid>
+    </p:dialog>
 
 </h:body>
 </html>

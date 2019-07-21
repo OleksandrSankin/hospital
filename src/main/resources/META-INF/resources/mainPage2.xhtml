@@ -44,7 +44,9 @@
     <div class="p-grid p-dir-col">
         <div class="p-col">
             <div class="box" style="height: 500px; background-color: snow;">
-
+                <p:contentFlow value="#{imagesView.images}" var="image" style="height: 500px;">
+                    <p:graphicImage library="images" name="#{image}" styleClass="content"/>
+                </p:contentFlow>
             </div>
         </div>
 
@@ -108,8 +110,6 @@
                         </pre>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -119,10 +119,10 @@
 
     <p:dialog id="vchod" widgetVar="Vchod">
         <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-            <p:outputLabel value=" Имя:"/>
-            <p:inputText value="#{homeController.name}"/>
-            <p:outputLabel value=" Фамилия:"/>
-            <p:inputText value="#{homeController.surname}"/>
+            <p:outputLabel value=" Номер телефона:"/>
+            <p:inputText value="#{homeController.phone}"/>
+            <p:outputLabel value=" Пароль:"/>
+            <p:inputText value="#{homeController.kod}"/>
             <p:commandButton value="OK" />
         </h:panelGrid>
     </p:dialog>
@@ -130,12 +130,22 @@
     <p:dialog id="registrace" widgetVar="Registr">
         <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
             <p:outputLabel value=" Номер телефона:"/>
-            <p:inputText value="+380 #{homeController.name}"/>
+            <p:inputText value="+380 #{homeController.phone}"/>
             <p:outputLabel value=" E-mail:"/>
-            <p:inputText value="#{homeController.surname}"/>
-            <p:commandButton value="OK" />
+            <p:inputText value="#{homeController.email}"/>
+            <p:commandButton value="OK" oncomplete="PF('Registr2').show()" />
         </h:panelGrid>
     </p:dialog>
+
+
+    <p:dialog id="registrace2" widgetVar="Registr2">
+        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+            <p:outputLabel value="Код из смс:"/>
+            <p:inputText value=" #{homeController.kod}"/>
+            <p:commandButton value="OK"  action="#{homeController.Registration()}" />
+        </h:panelGrid>
+    </p:dialog>
+
 
 </h:body>
 </html>

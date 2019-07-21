@@ -9,6 +9,19 @@ public class HomeController {
 
     private String surname;
 
+    private String phone;
+
+    private String email;
+
+    private String kod;
+
+
+    public String getPhone() { return phone; }
+
+    public String getEmail() { return email; }
+
+    public String getKod() { return kod; }
+
     public String getName() {
         return name;
     }
@@ -25,10 +38,19 @@ public class HomeController {
         this.surname = surname;
     }
 
-    public String sayHello1() {
-        System.out.println("Hello2 " + name + " " + surname);
-        return "home.xhtml?faces-redirect=true&name=" + name;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setKod(String kod) {
+        this.kod = kod;
+    }
+
+    public String Registration() { return "registration.xhtml?faces-redirect=true"; }
 
     public void sayHello2() {
         System.out.println("Hello1 " + name + " " + surname);

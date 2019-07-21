@@ -8,12 +8,143 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>MainPage</title>
+    <title>Registration</title>
 </h:head>
 
 <h:body>
-    mnau
+    <h:form>
+        <div class="ui-g">
+            <div class="ui-g-3">
+                <h:graphicImage library="images" name="tucnak.png" width="43%"/>
+            </div>
+            <div class="ui-g-1"></div>
+            <div class="ui-g-2" style="padding-top: 3%">
+                <p:commandButton value="menu 1"/>
+            </div>
+            <div class="ui-g-2" style="padding-top: 3%">
+                <p:commandButton value="регистрация" oncomplete="PF('Registr').show();"/>
+            </div>
+            <div class="ui-g-2" style="padding-top: 3%">
+                <p:commandButton value="вход" oncomplete="PF('Vchod').show();"/>
+            </div>
+            <div class="ui-g-1" align="right" style="padding-top: 3%">
+                <p:commandButton value=" ? "/>
+            </div>
+        </div>
+    </h:form>
+    <!--////////////////////////////-->
 
+
+    <div class="ui-g" style="height: 800px">
+
+        <div class="ui-g-3">
+            <h:graphicImage library="images" name="backgroundImage.jpg" height="800px" width="400px"/>
+        </div>
+
+        <div class="ui-g-6" style="background-color: lemonchiffon">
+
+            <h:panelGrid columns="2">
+            <h:outputText value="Имя: "/>
+            <p:inputText />
+
+            <h:outputText value="Фамилия: "/>
+            <p:inputText />
+
+           <h:outputText value="E-mail: "/>
+            <p:inputText />
+            </h:panelGrid>
+
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Пароль: "/>
+                    <p:password id="withFeedback" value="#{passwordView.password1}" feedback="true"
+                                promptLabel="Пожалуйста, введите пароль"
+                                weakLabel="Слабый" goodLabel="Средний уровень" strongLabel="Сильный"/>
+                </h:panelGrid>
+            </h:form>
+
+
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="Radio" value="Пол:"/>
+                <p:selectOneRadio id="Radio" value="#{radioView.console}" unselectable="true">
+                    <f:selectItem itemLabel="мужской" itemValue="1"/>
+                    <f:selectItem itemLabel="женский" itemValue="2"/>
+                </p:selectOneRadio>
+            </h:panelGrid>
+
+
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="oneMenu" value="Город:"/>
+                <p:selectOneMenu id="oneMenu" value="#{selectOneMenuView.console}" style="width:125px">
+                    <f:selectItem itemLabel="Киев" itemValue="Киев"/>
+                    <f:selectItem itemLabel="Львов" itemValue="Львов"/>
+                    <f:selectItem itemLabel="Одесса" itemValue="Одесса"/>
+                    <f:selectItem itemLabel="Днепр" itemValue="Днепр"/>
+                </p:selectOneMenu>
+            </h:panelGrid>
+        </div>
+
+        <div class="ui-g-3">
+            <h:graphicImage library="images" name="backgroundImage.jpg" height="800px" width="320px"/>
+        </div>
+
+    </div>
+
+
+    <!--/////////////////-->
+    <div class="p-col">
+        <div class="box" style="height: 150px; background-color: midnightblue;">
+            <div class="ui-g">
+                <div class="ui-g-6">
+                        <pre>
+
+                        Контакти:
+                        +38 044 580-10-70
+                        +38 073 580-10-70
+                        +38 066 580-10-70
+                        +38 068 580-10-70
+                        </pre>
+                </div>
+                <div class="ui-g-6">
+                        <pre>
+
+                        Час роботи:
+                        Пн. - Пт. з 8:00 до 18:00
+                        Сб. з 9:00 до 16:00
+                        </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p:dialog id="vchod" widgetVar="Vchod">
+        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+            <p:outputLabel value=" Номер телефона:"/>
+            <p:inputText value="#{homeController.phone}"/>
+            <p:outputLabel value=" Пароль:"/>
+            <p:inputText value="#{homeController.kod}"/>
+            <p:commandButton value="OK"/>
+        </h:panelGrid>
+    </p:dialog>
+
+    <p:dialog id="registrace" widgetVar="Registr">
+        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+            <p:outputLabel value=" Номер телефона:"/>
+            <p:inputText value="+380 #{homeController.phone}"/>
+            <p:outputLabel value=" E-mail:"/>
+            <p:inputText value="#{homeController.email}"/>
+            <p:commandButton value="OK" oncomplete="PF('Registr2').show()"/>
+        </h:panelGrid>
+    </p:dialog>
+
+
+    <p:dialog id="registrace2" widgetVar="Registr2">
+        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+            <p:outputLabel value="Код из смс:"/>
+            <p:inputText value=" #{homeController.kod}"/>
+            <p:commandButton value="OK" action="#{homeController.Registration()}"/>
+        </h:panelGrid>
+    </p:dialog>
 </h:body>
 
 </html>

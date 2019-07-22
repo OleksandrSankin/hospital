@@ -94,7 +94,7 @@ public class HomeController {
 
     public void saveUser() {
         SiteUser siteUser = new SiteUser();
-        siteUser.setName("Vasya");
+        siteUser.setName(this.name);
         siteUser.setSurname("Ivanov");
         siteUser.setEmail("ivanovv@ggg");
         siteUser.setDateOfBirth(new Date());

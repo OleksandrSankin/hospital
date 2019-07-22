@@ -2,6 +2,8 @@ package com.example.demo.controlles;
 
 import com.example.demo.Car;
 import com.example.demo.repos.CarRepository;
+import com.example.demo.repos.SiteUser;
+import com.example.demo.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -21,19 +23,29 @@ public class HomeController {
 
     private String kod;
 
-    @Autowired
+    @Autowired //=new CarRepository()  odkaz na exemplar daneho classu
     private CarRepository carRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
 
     @PostConstruct
     private void init() {
 
     }
 
-    public String getPhone() { return phone; }
+    public String getPhone() {
+        return phone;
+    }
 
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public String getKod() { return kod; }
+    public String getKod() {
+        return kod;
+    }
 
     public String getName() {
         return name;
@@ -63,17 +75,32 @@ public class HomeController {
         this.kod = kod;
     }
 
-    public String Registration() { return "registration.xhtml?faces-redirect=true"; }
-    public String Home() { return "mainPage.xhtml?faces-redirect=true"; }
+    public String Registration() {
+        return "registration.xhtml?faces-redirect=true";
+    }
 
-public void saveCar(){
-        Car car=new Car();
+    public String Home() {
+        return "mainPage.xhtml?faces-redirect=true";
+    }
+
+    public void saveCar() {
+        Car car = new Car();
         car.setName("toyota");
         car.getDate(new Date());
         car.setNum(555);
         carRepository.save(car);
 
-}
+    }
+
+    public void saveUser() {
+        SiteUser siteUser = new SiteUser();
+        siteUser.setName("Vasya");
+        siteUser.setSurname("Ivanov");
+        siteUser.setEmail("ivanovv@ggg");
+        siteUser.setDateOfBirth(new Date());
+        userRepository.save(siteUser);
+    }
+
     public void sayHello2() {
         System.out.println("Hello1 " + name + " " + surname);
     }

@@ -12,7 +12,7 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected long id;
+   private long id;
 
     private Date date;
     private String name;

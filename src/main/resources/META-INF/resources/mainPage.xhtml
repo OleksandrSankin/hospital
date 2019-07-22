@@ -12,10 +12,141 @@
 </h:head>
 
 <h:body>
-        <p:contentFlow value="#{imagesView.images}" var="image">
-            <p:graphicImage library="images" name="#{image}" styleClass="content"/>
-        </p:contentFlow>
 
-</h:body>
+    <h:form>
+        <div class="ui-g">
+            <div class="ui-g-3">
+                <h:graphicImage library="images" name="tucnak.png" width="43%"/>
+            </div>
+            <div class="ui-g-1"></div>
+            <div class="ui-g-2" style="padding-top: 3%">
+                <p:commandButton value="главная страница" action="#{homeController.Home()}"/>
+            </div>
+            <div class="ui-g-2" style="padding-top: 3%">
+                <p:commandButton value="регистрация" oncomplete="PF('Registr').show();"/>
+            </div>
+            <div class="ui-g-2" style="padding-top: 3%">
+                <p:commandButton value="вход" oncomplete="PF('Vchod').show();"/>
+                <!--            <p:commandLink id="menu3">-->
+                <!--                <h:outputText value="menu 3" oncomplete="PF('myDialog').show();" update="mydialog"/>-->
+                <!--            </p:commandLink>-->
+            </div>
+            <div class="ui-g-1" align="right" style="padding-top: 3%">
+                <p:commandButton value=" ? "/>
+            </div>
+            <!--                <div class="ui-g-1">-->
+            <!--                    <p:button icon="pi pi-search" style="margin-right:20px;" title="Icon Only">-->
+            <!--                        <f:param name="productId" value="30"/>-->
+            <!--                    </p:button>-->
+            <!--                </div>-->
+        </div>
+    </h:form>
+
+        <div class="p-grid p-dir-col">
+            <div class="p-col">
+                <div class="box" style="height: 500px; background-color: snow;">
+                    <p:contentFlow value="#{imagesView.images}" var="image" style="height: 500px;">
+                        <p:graphicImage library="images" name="#{image}" styleClass="content"/>
+                    </p:contentFlow>
+                </div>
+            </div>
+
+            <div class="p-col">
+                <div class="box" style="height: 500px; background-color: oldlace; size: auto" align="center">
+                <pre>
+                Це сучасна, зручна та надійна електронна медична система, створена для пацієнтів, лікарів, державних та приватних медичних закладів.
+
+                ДЛЯ ПАЦІЄНТІВ
+                - Можливість легко знайти та обрати свого лікаря;
+                - Швидкий запис на прийом on-line – себе та членів своєї родини;
+                - Доступ до своєї електронної медичної картки (ЕМК);
+                - Миттєві результати аналізів і діагностики в кабінеті пацієнта;
+                - Доступ до призначень лікаря та плану лікування.
+                ДЛЯ ЛІКАРІВ
+                - Зручне ведення історії хвороби пацієнтів та ЕМК;
+                - Оперативне отримання результатів діагностики та аналізів;
+                - Легке використання клінічних протоколів;
+                - Зрозумілий кабінет для ведення прийому пацієнтів.
+                    МОЖЛИВОСТІ
+                - Автоматизація реєстратури та роботи лікаря;
+                - Управління розкладом лікаря;
+                - Ведення електронних медичних карток;
+                - Облік медичних препаратів та ведення оплат;
+                - Формування звітів та статистики;
+                - Підтримка формату DICOM та стандарту HL7;
+                - Конструктор бланків і форм;
+                - Інтуїтивно зрозумілій веб-інтерфейс;
+                - Гнучке налаштування прав доступу;
+                - Фіксація дій користувачів;
+                - Доступ пацієнтів через власні кабінети до своєї електронної медичної картки;
+                - Забезпечення надійного шифрування і безпека даних;
+                - Портал з інформацією про лікарів, годинами їхнього прийому та адресами лікарень;
+                - Підтримка від кол-центру для лікарів та пацієнтів.
+                БЕЗПЕКА ТА КОНФІДЕНЦІЙНІСТЬ
+                 надійно захищає дані пацієнтів. Всі дані зберігаються у дата-центрі, який отримав сертифікат комплексної системи захисту інформації (КСЗІ) від Державної служби спеціального зв’язку і захисту інформації України.
+
+                Обробка персональної інформації громадян відбувається в правовому полі України.
+
+                </pre>
+                </div>
+            </div>
+
+            <div class="p-col">
+                <div class="box" style="height: 200px; background-color: midnightblue;">
+                    <div class="ui-g">
+                        <div class="ui-g-6">
+                        <pre>
+
+                        Контакти:
+                        +38 044 580-10-70
+                        +38 073 580-10-70
+                        +38 066 580-10-70
+                        +38 068 580-10-70
+                        </pre>
+                        </div>
+                        <div class="ui-g-6">
+                        <pre>
+
+                        Час роботи:
+                        Пн. - Пт. з 8:00 до 18:00
+                        Сб. з 9:00 до 16:00
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+
+
+    <p:dialog id="vchod" widgetVar="Vchod">
+        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+            <p:outputLabel value=" Номер телефона:"/>
+            <p:inputText value="#{homeController.phone}"/>
+            <p:outputLabel value=" Пароль:"/>
+            <p:inputText value="#{homeController.kod}"/>
+            <p:commandButton value="OK"/>
+        </h:panelGrid>
+    </p:dialog>
+
+    <p:dialog id="registrace" widgetVar="Registr">
+        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+            <p:outputLabel value=" Номер телефона:"/>
+            <p:inputText value="+380 #{homeController.phone}"/>
+            <p:commandButton value="OK" oncomplete="PF('Registr2').show()"/>
+        </h:panelGrid>
+    </p:dialog>
+
+
+    <p:dialog id="registrace2" widgetVar="Registr2">
+        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+            <p:outputLabel value="Код из смс:"/>
+            <p:inputText value=" #{homeController.kod}"/>
+            <p:commandButton value="OK" action="#{homeController.Registration()}"/>
+        </h:panelGrid>
+    </p:dialog>
+
 
 </html>
+
+

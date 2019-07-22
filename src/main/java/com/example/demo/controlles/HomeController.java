@@ -51,6 +51,8 @@ public class HomeController {
     }
 
     public String Registration() { return "registration.xhtml?faces-redirect=true"; }
+    public String Home() { return "mainPage.xhtml?faces-redirect=true"; }
+
 
     public void sayHello2() {
         System.out.println("Hello1 " + name + " " + surname);

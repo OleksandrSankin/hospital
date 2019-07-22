@@ -1,6 +1,12 @@
 package com.example.demo.controlles;
 
+import com.example.demo.Car;
+import com.example.demo.repos.CarRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
+import java.util.Date;
 
 @Named
 public class HomeController {
@@ -15,6 +21,13 @@ public class HomeController {
 
     private String kod;
 
+    @Autowired
+    private CarRepository carRepository;
+
+    @PostConstruct
+    private void init() {
+
+    }
 
     public String getPhone() { return phone; }
 
@@ -53,7 +66,14 @@ public class HomeController {
     public String Registration() { return "registration.xhtml?faces-redirect=true"; }
     public String Home() { return "mainPage.xhtml?faces-redirect=true"; }
 
+public void saveCar(){
+        Car car=new Car();
+        car.setName("toyota");
+        car.getDate(new Date());
+        car.setNum(555);
+        carRepository.save(car);
 
+}
     public void sayHello2() {
         System.out.println("Hello1 " + name + " " + surname);
     }

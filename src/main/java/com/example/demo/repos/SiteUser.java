@@ -11,6 +11,8 @@ public class SiteUser {
     private String name;
     private String surname;
     private String email;
+    private String gender;
+    private String city;
     private Date dateOfBirth;
 
 
@@ -57,4 +59,12 @@ public class SiteUser {
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
+    public String getGender() { return gender; }
+
+    public void setCity(String city){this.city=city;}
+
+    public String getCity(){return city;}
+
+    public void setGender(String gender) { this.gender = gender; }
 }

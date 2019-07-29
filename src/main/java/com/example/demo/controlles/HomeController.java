@@ -23,6 +23,12 @@ public class HomeController {
 
     private String kod;
 
+    private String gender;
+
+    private String city;
+
+    private Date date;
+
 //    @Autowired //=new CarRepository()  odkaz na exemplar daneho classu
 //    private CarRepository carRepository;
 
@@ -75,6 +81,22 @@ public class HomeController {
         this.kod = kod;
     }
 
+    public String getGender() { return gender; }
+
+    public void setGender(String gender) { this.gender = gender; }
+
+    public String getCity() { return city; }
+
+    public void setCity(String city) { this.city = city; }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public String Registration() {
         return "registration.xhtml?faces-redirect=true";
     }
@@ -97,11 +119,10 @@ public class HomeController {
         siteUser.setName(this.name);
         siteUser.setSurname(this.surname);
         siteUser.setEmail(this.email);
-        siteUser.setDateOfBirth(new Date());
+        siteUser.setDateOfBirth(this.date);
+        siteUser.setGender(this.gender);
+        siteUser.setCity(this.city);
         userRepository.save(siteUser);
     }
 
-    public void sayHello2() {
-        System.out.println("Hello1 " + name + " " + surname);
-    }
 }

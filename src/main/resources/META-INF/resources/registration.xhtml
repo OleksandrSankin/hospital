@@ -54,8 +54,8 @@
                     <h:outputText value="E-mail: "/>
                     <p:inputText value="#{homeController.email}"/>
 
-                    <p:outputLabel for="date" value="Дата рождения: "/>
-                    <p:inputMask id="date" mask="99/99/9999"/>
+<!--                    <p:outputLabel for="date" value="Дата рождения: "/>-->
+<!--                    <p:inputMask id="date" mask="99/99/9999" value="#{homeController.date}"/>-->
 
                     <h:outputText value="Пароль: "/>
                     <p:password id="withFeedback" feedback="true"
@@ -64,18 +64,18 @@
 
 
                     <p:outputLabel for="Radio" value="Пол:"/>
-                    <p:selectOneRadio id="Radio" unselectable="true">
-                        <f:selectItem itemLabel="мужской" itemValue="1"/>
-                        <f:selectItem itemLabel="женский" itemValue="2"/>
+                    <p:selectOneRadio id="Radio" unselectable="true" value="#{homeController.gender}">
+                        <f:selectItem itemLabel="мужской" itemValue="m" />
+                        <f:selectItem itemLabel="женский" itemValue="f" />
                     </p:selectOneRadio>
 
 
                     <p:outputLabel for="oneMenu" value="Город:"/>
-                    <p:selectOneMenu id="oneMenu" style="width:125px">
-                        <f:selectItem itemLabel="Киев" itemValue="Киев"/>
-                        <f:selectItem itemLabel="Львов" itemValue="Львов"/>
-                        <f:selectItem itemLabel="Одесса" itemValue="Одесса"/>
-                        <f:selectItem itemLabel="Днепр" itemValue="Днепр"/>
+                    <p:selectOneMenu id="oneMenu" style="width:125px" value="#{homeController.city}">
+                        <f:selectItem itemLabel="Киев" itemValue="Киев" />
+                        <f:selectItem itemLabel="Львов" itemValue="Львов" />
+                        <f:selectItem itemLabel="Одесса" itemValue="Одесса" />
+                        <f:selectItem itemLabel="Днепр" itemValue="Днепр" />
                     </p:selectOneMenu>
                 </h:panelGrid>
                 <p:commandButton value="Готово" action="#{homeController.saveUser()}"/>

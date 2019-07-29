@@ -49,10 +49,10 @@
                     <p:inputText value="#{homeController.name}"/>
 
                     <h:outputText value="Фамилия: "/>
-                    <p:inputText/>
+                    <p:inputText value="#{homeController.surname}"/>
 
                     <h:outputText value="E-mail: "/>
-                    <p:inputText/>
+                    <p:inputText value="#{homeController.email}"/>
 
                     <p:outputLabel for="date" value="Дата рождения: "/>
                     <p:inputMask id="date" mask="99/99/9999"/>
@@ -78,14 +78,14 @@
                         <f:selectItem itemLabel="Днепр" itemValue="Днепр"/>
                     </p:selectOneMenu>
                 </h:panelGrid>
-                <p:commandButton value="Готово"/>
+                <p:commandButton value="Готово" action="#{homeController.saveUser()}"/>
             </div>
 
             <div class="ui-g-3">
                 <h:graphicImage library="images" name="backgroundImage.jpg" height="800px" width="320px"/>
             </div>
 
-            <p:commandButton value="Done" action="#{homeController.saveUser()}"/>
+
 
         </div>
     </h:form>

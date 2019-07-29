@@ -23,8 +23,8 @@ public class HomeController {
 
     private String kod;
 
-    @Autowired //=new CarRepository()  odkaz na exemplar daneho classu
-    private CarRepository carRepository;
+//    @Autowired //=new CarRepository()  odkaz na exemplar daneho classu
+//    private CarRepository carRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -83,20 +83,20 @@ public class HomeController {
         return "mainPage.xhtml?faces-redirect=true";
     }
 
-    public void saveCar() {
-        Car car = new Car();
-        car.setName("toyota");
-        car.getDate(new Date());
-        car.setNum(555);
-        carRepository.save(car);
-
-    }
+//    public void saveCar() {
+//        Car car = new Car();
+//        car.setName("toyota");
+//        car.getDate(new Date());
+//        car.setNum(555);
+//        carRepository.save(car);
+//
+//    }
 
     public void saveUser() {
         SiteUser siteUser = new SiteUser();
         siteUser.setName(this.name);
-        siteUser.setSurname("Ivanov");
-        siteUser.setEmail("ivanovv@ggg");
+        siteUser.setSurname(this.surname);
+        siteUser.setEmail(this.email);
         siteUser.setDateOfBirth(new Date());
         userRepository.save(siteUser);
     }

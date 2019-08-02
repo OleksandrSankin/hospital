@@ -12,10 +12,11 @@
 </h:head>
 
 <h:body>
-    <p:contentFlow value="#{imagesView.images}" var="image">
-        <p:graphicImage library="images" name="#{image}" styleClass="content"/>
-    </p:contentFlow>
+    <h:form>
+        <p:growl id="growl" showDetail="true" sticky="true" />
 
+            <p:commandButton value="Save" action="#{homeController.saveMessage}" update="@form" />
+    </h:form>
 </h:body>
 
 </html>

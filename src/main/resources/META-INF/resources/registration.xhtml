@@ -54,8 +54,11 @@
                     <h:outputText value="E-mail: "/>
                     <p:inputText value="#{homeController.email}"/>
 
-<!--                    <p:outputLabel for="date" value="Дата рождения: "/>-->
-<!--                    <p:inputMask id="date" mask="99/99/9999" value="#{homeController.date}"/>-->
+                    <p:growl id="msgs" showDetail="true"/>
+<!--                    <h:panelGrid columns="2" cellpadding="5">-->
+                        <p:outputLabel for="button" value="Дата рождения:"/>
+                        <p:calendar id="button" value="#{calendarView.date}" showOn="button"/>
+<!--                    </h:panelGrid>-->
 
                     <h:outputText value="Пароль: "/>
                     <p:password id="withFeedback" feedback="true"
@@ -65,17 +68,17 @@
 
                     <p:outputLabel for="Radio" value="Пол:"/>
                     <p:selectOneRadio id="Radio" unselectable="true" value="#{homeController.gender}">
-                        <f:selectItem itemLabel="мужской" itemValue="m" />
-                        <f:selectItem itemLabel="женский" itemValue="f" />
+                        <f:selectItem itemLabel="мужской" itemValue="m"/>
+                        <f:selectItem itemLabel="женский" itemValue="f"/>
                     </p:selectOneRadio>
 
 
                     <p:outputLabel for="oneMenu" value="Город:"/>
                     <p:selectOneMenu id="oneMenu" style="width:125px" value="#{homeController.city}">
-                        <f:selectItem itemLabel="Киев" itemValue="Киев" />
-                        <f:selectItem itemLabel="Львов" itemValue="Львов" />
-                        <f:selectItem itemLabel="Одесса" itemValue="Одесса" />
-                        <f:selectItem itemLabel="Днепр" itemValue="Днепр" />
+                        <f:selectItem itemLabel="Киев" itemValue="Киев"/>
+                        <f:selectItem itemLabel="Львов" itemValue="Львов"/>
+                        <f:selectItem itemLabel="Одесса" itemValue="Одесса"/>
+                        <f:selectItem itemLabel="Днепр" itemValue="Днепр"/>
                     </p:selectOneMenu>
                 </h:panelGrid>
                 <p:commandButton value="Готово" action="#{homeController.saveUser()}"/>
@@ -86,17 +89,27 @@
             </div>
 
 
-
         </div>
     </h:form>
 
 
+    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+        <p:panelGrid id="display" columns="2" columnClasses="label,value">
+
+            <h:outputText value="Button:"/>
+            <h:outputText value="#{calendarView.date}">
+                <f:convertDateTime pattern="MM/dd/yyyy"/>
+            </h:outputText>
+        </p:panelGrid>
+    </p:dialog>
+
+
     <!--/////////////////-->
     <h:form>
-    <div class="p-col">
-        <div class="box" style="height: 150px; background-color: midnightblue;">
-            <div class="ui-g">
-                <div class="ui-g-6">
+        <div class="p-col">
+            <div class="box" style="height: 150px; background-color: midnightblue;">
+                <div class="ui-g">
+                    <div class="ui-g-6">
                         <pre>
 
                         Контакти:
@@ -105,45 +118,45 @@
                         +38 066 580-10-70
                         +38 068 580-10-70
                         </pre>
-                </div>
-                <div class="ui-g-6">
+                    </div>
+                    <div class="ui-g-6">
                         <pre>
 
                         Час роботи:
                         Пн. - Пт. з 8:00 до 18:00
                         Сб. з 9:00 до 16:00
                         </pre>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <p:dialog id="vchod" widgetVar="Vchod">
-        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-            <p:outputLabel value=" Номер телефона:"/>
-            <p:inputText value="#{homeController.phone}"/>
-            <p:outputLabel value=" Пароль:"/>
-            <p:inputText value="#{homeController.kod}"/>
-            <p:commandButton value="OK"/>
-        </h:panelGrid>
-    </p:dialog>
+        <p:dialog id="vchod" widgetVar="Vchod">
+            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                <p:outputLabel value=" Номер телефона:"/>
+                <p:inputText value="#{homeController.phone}"/>
+                <p:outputLabel value=" Пароль:"/>
+                <p:inputText value="#{homeController.kod}"/>
+                <p:commandButton value="OK"/>
+            </h:panelGrid>
+        </p:dialog>
 
-    <p:dialog id="registrace" widgetVar="Registr">
-        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-            <p:outputLabel value=" Номер телефона:"/>
-            <p:inputText value="+380 #{homeController.phone}"/>
-            <p:commandButton value="OK" oncomplete="PF('Registr2').show()"/>
-        </h:panelGrid>
-    </p:dialog>
+        <p:dialog id="registrace" widgetVar="Registr">
+            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                <p:outputLabel value=" Номер телефона:"/>
+                <p:inputText value="+380 #{homeController.phone}"/>
+                <p:commandButton value="OK" oncomplete="PF('Registr2').show()"/>
+            </h:panelGrid>
+        </p:dialog>
 
 
-    <p:dialog id="registrace2" widgetVar="Registr2">
-        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-            <p:outputLabel value="Код из смс:"/>
-            <p:inputText value=" #{homeController.kod}"/>
-            <p:commandButton value="OK" action="#{homeController.Registration()}"/>
-        </h:panelGrid>
-    </p:dialog>
+        <p:dialog id="registrace2" widgetVar="Registr2">
+            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                <p:outputLabel value="Код из смс:"/>
+                <p:inputText value=" #{homeController.kod}"/>
+                <p:commandButton value="OK" action="#{homeController.Registration()}"/>
+            </h:panelGrid>
+        </p:dialog>
     </h:form>
 
 </h:body>

@@ -115,6 +115,10 @@ public class HomeController {
         return "mainPage.xhtml?faces-redirect=true";
     }
 
+    public String UserPage(){
+        return "userPage.xhtml?faces-redirect=true";
+    }
+
 //    public void saveCar() {
 //        Car car = new Car();
 //        car.setName("toyota");

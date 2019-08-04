@@ -88,7 +88,9 @@
 
         </h:panelGrid>
         <h:form>
-            <p:commandButton value="Готово" action="#{homeController.saveUser()}"/>
+            <p:commandButton value="Готово" actionListener="#{homeController.saveUser()}" action="#{homeController.UserPage()}">
+<!--            <f:ajax listener="#{bean.ajaxListener}" />-->
+            </p:commandButton>
         </h:form>
     </div>
 

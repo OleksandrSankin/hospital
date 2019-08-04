@@ -11,6 +11,7 @@ public class SiteUser {
     private String name;
     private String surname;
     private String email;
+    private String password;
     private String gender;
     private String city;
     private Date dateOfBirth;
@@ -51,6 +52,10 @@ public class SiteUser {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
 
     public Date getDateOfBirth() {
         return dateOfBirth;

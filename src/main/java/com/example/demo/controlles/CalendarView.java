@@ -21,7 +21,9 @@ import java.util.List;
         private List<Date> invalidDates;
 
 
-        @PostConstruct
+
+
+    @PostConstruct
         public void init() {
             invalidDates = new ArrayList<>();
             Date today = new Date();

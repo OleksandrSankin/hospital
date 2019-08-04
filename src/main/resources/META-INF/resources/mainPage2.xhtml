@@ -13,30 +13,73 @@
 
 <h:body>
 
+    <div class="box" style=" background-image: linear-gradient(cornflowerblue, white) ;size: auto" align="center">
+        <h3 align="center"> Регистрация </h3>
 
-    <h:form id="form">
-        <p:growl id="msgs" showDetail="true" />
+        <h:panelGrid columns="2" cellpadding="15" style="margin-bottom:200px">
+            <h:form>
+                <h:outputText value="Имя: "/>
+                <p:inputText value="#{homeController.name}"/>
+            </h:form>
 
-        <h:panelGrid columns="2" cellpadding="5">
+            <h:form>
+                <h:outputText value="Фамилия: "/>
+                <p:inputText value="#{homeController.surname}"/>
+            </h:form>
 
-        <p:outputLabel for="button" value="Button:" />
-        <p:calendar id="button" value="#{calendarView.date}" showOn="button" />
+            <h:form>
+                <h:outputText value="E-mail: "/>
+                <p:inputText value="#{homeController.email}"/>
+            </h:form>
+
+            <h:form>
+                <p:growl id="msgs" showDetail="true"/>
+                <p:outputLabel for="button" value="Дата рождения:"/>
+                <p:calendar id="button" value="#{calendarView.date}" showOn="button"/>
+            </h:form>
+
+            <h:form>
+                <h:outputText value="Пароль: "/>
+                <p:password id="withFeedback" value="#{homeController.password}"
+                            feedback="true" promptLabel="Пожалуйста, введите пароль"
+                            weakLabel="Слабый" goodLabel="Средний уровень" strongLabel="Сильный"/>
+            </h:form>
+            <br/>
+            <h:form>
+                <p:outputLabel for="Radio" value="Пол:"/>
+                <p:selectOneRadio id="Radio" unselectable="true" value="#{homeController.gender}">
+                    <f:selectItem itemLabel="мужской" itemValue="m"/>
+                    <f:selectItem itemLabel="женский" itemValue="f"/>
+                </p:selectOneRadio>
+            </h:form>
+            <br/>
+            <h:form>
+                <p:outputLabel for="oneMenu" value="Город:"/>
+                <p:selectOneMenu id="oneMenu" style="width:125px" value="#{homeController.city}">
+                    <f:selectItem itemLabel="Киев" itemValue="Киев"/>
+                    <f:selectItem itemLabel="Львов" itemValue="Львов"/>
+                    <f:selectItem itemLabel="Одесса" itemValue="Одесса"/>
+                    <f:selectItem itemLabel="Днепр" itemValue="Днепр"/>
+                </p:selectOneMenu>
+            </h:form>
+
         </h:panelGrid>
+        <h:form>
+            <p:commandButton value="Готово" action="#{homeController.saveUser()}"/>
+        </h:form>
+    </div>
 
 
-        <p:commandButton value="Submit" update="msgs" action="#{calendarView.click}" icon="pi pi-check" />
-
-        <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
         <p:panelGrid id="display" columns="2" columnClasses="label,value">
 
-        <h:outputText value="Button:" />
-        <h:outputText value="#{calendarView.date}">
-            <f:convertDateTime pattern="MM/dd/yyyy" />
-        </h:outputText>
+            <h:outputText value="Button:"/>
+            <h:outputText value="#{calendarView.date}">
+                <f:convertDateTime pattern="MM/dd/yyyy"/>
+            </h:outputText>
         </p:panelGrid>
-        </p:dialog>
+    </p:dialog>
 
-    </h:form>
 </h:body>
 
 </html>

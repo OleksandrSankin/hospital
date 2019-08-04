@@ -29,6 +29,8 @@ public class HomeController {
 
     private Date date;
 
+    private String password;
+
 //    @Autowired //=new CarRepository()  odkaz na exemplar daneho classu
 //    private CarRepository carRepository;
 
@@ -81,6 +83,14 @@ public class HomeController {
         this.kod = kod;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getGender() { return gender; }
 
     public void setGender(String gender) { this.gender = gender; }
@@ -122,6 +132,8 @@ public class HomeController {
         siteUser.setDateOfBirth(this.date);
         siteUser.setGender(this.gender);
         siteUser.setCity(this.city);
+        siteUser.setPassword(this.password);
+
         userRepository.save(siteUser);
     }
 

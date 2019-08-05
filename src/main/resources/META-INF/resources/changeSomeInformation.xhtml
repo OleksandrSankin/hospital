@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>changeSomeInformation</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <div class="ui-g">
+            <div class="ui-g-3">
+                <h:graphicImage library="images" name="tucnak.png" width="43%"/>
+            </div>
+            <div class="ui-g-1"></div>
+            <div class="ui-g-2" style="padding-top: 3%">
+                <p:commandButton value="главная страница" action="#{homeController.Home()}"/>
+            </div>
+            <div class="ui-g-2" style="padding-top: 3%">
+                <p:commandButton value="регистрация" oncomplete="PF('Registr').show();"/>
+            </div>
+            <div class="ui-g-2" style="padding-top: 3%">
+                <p:commandButton value="вход" oncomplete="PF('Vchod').show();"/>
+            </div>
+            <div class="ui-g-1" align="right" style="padding-top: 3%">
+                <p:commandButton value=" ? "/>
+            </div>
+        </div>
+    </h:form>
+    <!--////////////////////////////-->
+
+
+    <div class="box" style=" background-image: linear-gradient(lavender, bisque) " align="center">
+
+
+        <h:panelGrid columns="1" cellpadding="15" style="margin-bottom:200px">
+            <h:form>
+                <h:outputText value="Имя: "/>
+                <h:outputText value="#{homeController.name}"/>
+            </h:form>
+
+            <h:form>
+                <h:outputText value="Фамилия: "/>
+                <h:outputText value="#{homeController.surname}"/>
+            </h:form>
+
+            <h:form>
+                <h:outputText value="E-mail: "/>
+                <h:outputText value="#{homeController.email}"/>
+            </h:form>
+
+            <h:form>
+
+                <h:outputText value="Дата рождения:"/>
+                <h:outputText value="#{calendarView.date}"/>
+            </h:form>
+
+
+            <h:form>
+                <p:outputLabel value="Пол:"/>
+                <h:outputText value="#{homeController.gender}"/>
+            </h:form>
+
+            <h:form>
+                <p:outputLabel value="Город:"/>
+                <h:outputText value="#{homeController.city}"/>
+            </h:form>
+
+            <h:form>
+                <h:outputText value=" Изменить пароль:"/>
+            </h:form>
+
+        </h:panelGrid>
+
+    </div>
+
+
+    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+        <p:panelGrid id="display" columns="2" columnClasses="label,value">
+
+            <h:outputText value="Button:"/>
+            <h:outputText value="#{calendarView.date}">
+                <f:convertDateTime pattern="MM/dd/yyyy"/>
+            </h:outputText>
+        </p:panelGrid>
+    </p:dialog>
+
+
+    <!--/////////////////-->
+    <h:form>
+        <div class="p-col">
+            <div class="box" style="height: 150px; background-image: linear-gradient(cornflowerblue, white)">
+                <div class="ui-g">
+                    <div class="ui-g-6">
+                        <pre>
+
+                        Контакти:
+                        +38 044 580-10-70
+                        +38 073 580-10-70
+                        +38 066 580-10-70
+                        +38 068 580-10-70
+                        </pre>
+                    </div>
+                    <div class="ui-g-6">
+                        <pre>
+
+                        Час роботи:
+                        Пн. - Пт. з 8:00 до 18:00
+                        Сб. з 9:00 до 16:00
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p:dialog id="vchod" widgetVar="Vchod">
+            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                <p:outputLabel value=" Номер телефона:"/>
+                <p:inputText value="#{homeController.phone}"/>
+                <p:outputLabel value=" Пароль:"/>
+                <p:inputText value="#{homeController.kod}"/>
+                <p:commandButton value="OK"/>
+            </h:panelGrid>
+        </p:dialog>
+
+        <p:dialog id="registrace" widgetVar="Registr">
+            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                <p:outputLabel value=" Номер телефона:"/>
+                <p:inputText value="+380 #{homeController.phone}"/>
+                <p:commandButton value="OK" oncomplete="PF('Registr2').show()"/>
+            </h:panelGrid>
+        </p:dialog>
+
+
+        <p:dialog id="registrace2" widgetVar="Registr2">
+            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                <p:outputLabel value="Код из смс:"/>
+                <p:inputText value=" #{homeController.kod}"/>
+                <p:commandButton value="OK" action="#{homeController.Registration()}"/>
+            </h:panelGrid>
+        </p:dialog>
+    </h:form>
+
+</h:body>
+
+</html>

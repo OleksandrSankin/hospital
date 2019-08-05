@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import java.util.Date;
+import java.util.List;
 
 @Named
 public class HomeController {
@@ -40,7 +41,13 @@ public class HomeController {
 
     @PostConstruct
     private void init() {
-
+        List<SiteUser> all = userRepository.findAll();
+        if (!all.isEmpty()){
+            SiteUser siteUser = all.get(0);
+            email=siteUser.getEmail();
+            name=siteUser.getName();
+            surname=siteUser.getSurname();
+        }
     }
 
     public String getPhone() {
@@ -116,17 +123,10 @@ public class HomeController {
     }
 
     public String UserPage(){
+        saveUser();
         return "userPage.xhtml?faces-redirect=true";
     }
 
-//    public void saveCar() {
-//        Car car = new Car();
-//        car.setName("toyota");
-//        car.getDate(new Date());
-//        car.setNum(555);
-//        carRepository.save(car);
-//
-//    }
 
     public void saveUser() {
         SiteUser siteUser = new SiteUser();

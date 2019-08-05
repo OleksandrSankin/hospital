@@ -38,45 +38,33 @@
 
     <div class="box" style=" background-image: linear-gradient(lavender, bisque) ;size: auto" align="center">
         <h2 align="center"> Регистрация </h2>
-
+        <h:form>
         <h:panelGrid columns="2" cellpadding="15" style="margin-bottom:200px">
-            <h:form>
+
                 <h:outputText value="Имя: "/>
                 <p:inputText value="#{homeController.name}"/>
-            </h:form>
 
-            <h:form>
                 <h:outputText value="Фамилия: "/>
                 <p:inputText value="#{homeController.surname}"/>
-            </h:form>
 
-            <h:form>
                 <h:outputText value="E-mail: "/>
                 <p:inputText value="#{homeController.email}"/>
-            </h:form>
 
-            <h:form>
                 <p:growl id="msgs" showDetail="true"/>
                 <p:outputLabel for="button" value="Дата рождения:"/>
                 <p:calendar id="button" value="#{calendarView.date}" showOn="button"/>
-            </h:form>
 
-            <h:form>
                 <h:outputText value="Пароль: "/>
                 <p:password id="withFeedback" value="#{homeController.password}"
                             feedback="true" promptLabel="Пожалуйста, введите пароль"
                             weakLabel="Слабый" goodLabel="Средний уровень" strongLabel="Сильный"/>
-            </h:form>
-            <br/>
-            <h:form>
+           <br/>
                 <p:outputLabel for="Radio" value="Пол:"/>
                 <p:selectOneRadio id="Radio" unselectable="true" value="#{homeController.gender}">
                     <f:selectItem itemLabel="мужской" itemValue="m"/>
                     <f:selectItem itemLabel="женский" itemValue="f"/>
                 </p:selectOneRadio>
-            </h:form>
-            <br/>
-            <h:form>
+
                 <p:outputLabel for="oneMenu" value="Город:"/>
                 <p:selectOneMenu id="oneMenu" style="width:125px" value="#{homeController.city}">
                     <f:selectItem itemLabel="Киев" itemValue="Киев"/>
@@ -84,12 +72,11 @@
                     <f:selectItem itemLabel="Одесса" itemValue="Одесса"/>
                     <f:selectItem itemLabel="Днепр" itemValue="Днепр"/>
                 </p:selectOneMenu>
-            </h:form>
+
 
         </h:panelGrid>
-        <h:form>
-            <p:commandButton value="Готово" actionListener="#{homeController.saveUser()}" action="#{homeController.UserPage()}">
-<!--            <f:ajax listener="#{bean.ajaxListener}" />-->
+            <p:commandButton value="Готово" action="#{homeController.UserPage()}">
+                <!--            <f:ajax listener="#{bean.ajaxListener}" />-->
             </p:commandButton>
         </h:form>
     </div>

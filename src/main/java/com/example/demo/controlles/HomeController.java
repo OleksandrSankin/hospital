@@ -7,6 +7,7 @@ import com.example.demo.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.util.Date;
 import java.util.List;
@@ -32,8 +33,6 @@ public class HomeController {
 
     private String password;
 
-//    @Autowired //=new CarRepository()  odkaz na exemplar daneho classu
-//    private CarRepository carRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -42,11 +41,18 @@ public class HomeController {
     @PostConstruct
     private void init() {
         List<SiteUser> all = userRepository.findAll();
-        if (!all.isEmpty()){
-            SiteUser siteUser = all.get(0);
-            email=siteUser.getEmail();
-            name=siteUser.getName();
-            surname=siteUser.getSurname();
+
+        for (int i = 0; i <all.size() ; i++) {
+            SiteUser siteUser = all.get(i);
+            if(siteUser.getName().equals(name)) {
+                email=siteUser.getEmail();
+                name=siteUser.getName();
+                surname=siteUser.getSurname();
+//                city=siteUser.getCity();
+//                gender=siteUser.getGender();
+
+                break;
+            }
         }
     }
 
@@ -54,25 +60,19 @@ public class HomeController {
         return phone;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email; }
 
     public String getKod() {
         return kod;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
+    public String getSurname() { return surname; }
 
     public void setSurname(String surname) {
         this.surname = surname;
@@ -86,9 +86,7 @@ public class HomeController {
         this.email = email;
     }
 
-    public void setKod(String kod) {
-        this.kod = kod;
-    }
+    public void setKod(String kod) { this.kod = kod; }
 
     public String getPassword() {
         return password;
@@ -128,6 +126,7 @@ public class HomeController {
     }
 
 
+
     public void saveUser() {
         SiteUser siteUser = new SiteUser();
         siteUser.setName(this.name);
@@ -140,5 +139,7 @@ public class HomeController {
 
         userRepository.save(siteUser);
     }
+
+
 
 }

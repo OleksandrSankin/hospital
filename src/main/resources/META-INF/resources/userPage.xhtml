@@ -22,7 +22,7 @@
                 <p:commandButton value="главная страница" action="#{homeController.Home()}"/>
             </div>
             <div class="ui-g-2" style="padding-top: 3%">
-                <p:commandButton value="регистрация" oncomplete="PF('Registr').show();"/>
+                <p:commandButton value="Редактировать данные" action="#{homeController.ChangeSomeInformation()}"/>
             </div>
             <div class="ui-g-2" style="padding-top: 3%">
                 <p:commandButton value="выход" oncomplete="PF('Vchod').show();"/>
@@ -38,6 +38,9 @@
         <h3>
         <h:outputText value="Добрый день, #{homeController.name} #{homeController.surname}"/>
         </h3>
+
+
+        <br/>
 
         <p:dataTable var="car" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="550">
 
@@ -78,33 +81,6 @@
                 </div>
             </div>
         </div>
-
-        <p:dialog id="vchod" widgetVar="Vchod">
-            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-                <p:outputLabel value=" Номер телефона:"/>
-                <p:inputText value="#{homeController.phone}"/>
-                <p:outputLabel value=" Пароль:"/>
-                <p:inputText value="#{homeController.kod}"/>
-                <p:commandButton value="OK"/>
-            </h:panelGrid>
-        </p:dialog>
-
-        <p:dialog id="registrace" widgetVar="Registr">
-            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-                <p:outputLabel value=" Номер телефона:"/>
-                <p:inputText value="+380 #{homeController.phone}"/>
-                <p:commandButton value="OK" oncomplete="PF('Registr2').show()"/>
-            </h:panelGrid>
-        </p:dialog>
-
-
-        <p:dialog id="registrace2" widgetVar="Registr2">
-            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-                <p:outputLabel value="Код из смс:"/>
-                <p:inputText value=" #{homeController.kod}"/>
-                <p:commandButton value="OK" action="#{homeController.Registration()}"/>
-            </h:panelGrid>
-        </p:dialog>
     </h:form>
 
 

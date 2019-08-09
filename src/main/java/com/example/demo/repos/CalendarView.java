@@ -1,4 +1,4 @@
-package com.example.demo.controlles;
+package com.example.demo.repos;
 
 
 import org.primefaces.PrimeFaces;

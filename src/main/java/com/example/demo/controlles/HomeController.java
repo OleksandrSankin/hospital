@@ -1,12 +1,15 @@
 package com.example.demo.controlles;
 
 import com.example.demo.Car;
+import com.example.demo.repos.CalendarView;
 import com.example.demo.repos.CarRepository;
 import com.example.demo.repos.SiteUser;
 import com.example.demo.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.util.Date;
@@ -33,6 +36,10 @@ public class HomeController {
 
     private String password;
 
+    private String newPassword1;
+
+    private String newPassword2;
+
 
     @Autowired
     private UserRepository userRepository;
@@ -42,12 +49,12 @@ public class HomeController {
     private void init() {
         List<SiteUser> all = userRepository.findAll();
 
-        for (int i = 0; i <all.size() ; i++) {
+        for (int i = 0; i < all.size(); i++) {
             SiteUser siteUser = all.get(i);
-            if(siteUser.getName().equals(name)) {
-                email=siteUser.getEmail();
-                name=siteUser.getName();
-                surname=siteUser.getSurname();
+            if (siteUser.getName().equals(name)) {
+                email = siteUser.getEmail();
+                name = siteUser.getName();
+                surname = siteUser.getSurname();
 //                city=siteUser.getCity();
 //                gender=siteUser.getGender();
 
@@ -60,19 +67,25 @@ public class HomeController {
         return phone;
     }
 
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 
     public String getKod() {
         return kod;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getSurname() { return surname; }
+    public String getSurname() {
+        return surname;
+    }
 
     public void setSurname(String surname) {
         this.surname = surname;
@@ -86,7 +99,9 @@ public class HomeController {
         this.email = email;
     }
 
-    public void setKod(String kod) { this.kod = kod; }
+    public void setKod(String kod) {
+        this.kod = kod;
+    }
 
     public String getPassword() {
         return password;
@@ -95,6 +110,14 @@ public class HomeController {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getNewPassword1() { return newPassword1;}
+
+    public void setNewPassword1(String newPassword1) { this.newPassword1 = newPassword1; }
+
+    public String getNewPassword2() { return newPassword2; }
+
+    public void setNewPassword2(String getNewPassword2) { this.newPassword2 = newPassword2; }
 
     public String getGender() { return gender; }
 
@@ -120,12 +143,36 @@ public class HomeController {
         return "mainPage.xhtml?faces-redirect=true";
     }
 
-    public String UserPage(){
+    public String UserPage() {
         saveUser();
         return "userPage.xhtml?faces-redirect=true";
     }
 
+    public String ChangeSomeInformation(){
+        return "changeSomeInformation.xhtml?faces-redirect=true";
+    }
 
+    public void PositiveAnswer() {
+        addMessage("Готово", "Данные сохранены");
+        saveUser();
+    }
+
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    public void SetNewUserPassword(){
+        if(getNewPassword1()==getNewPassword2()){
+            password=newPassword1;
+        }
+        else {}
+    }
+
+    CalendarView calendar = new CalendarView();
+    public void setCalendar(){
+        this.date = (Date) calendar.getDate();
+    }
 
     public void saveUser() {
         SiteUser siteUser = new SiteUser();
@@ -139,7 +186,6 @@ public class HomeController {
 
         userRepository.save(siteUser);
     }
-
 
 
 }

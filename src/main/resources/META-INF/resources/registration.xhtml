@@ -51,21 +51,21 @@
                 <p:inputText value="#{homeController.email}"/>
 
                 <p:growl id="msgs" showDetail="true"/>
-                <p:outputLabel for="button" value="Дата рождения:"/>
-                <p:calendar id="button" value="#{calendarView.date}" showOn="button"/>
+                <p:outputLabel for="button" value="Дата рождения: "/>
+                <p:calendar id="button" value="#{homeController.date}" showOn="button"/>
 
                 <h:outputText value="Пароль: "/>
                 <p:password id="withFeedback" value="#{homeController.password}"
                             feedback="true" promptLabel="Пожалуйста, введите пароль"
                             weakLabel="Слабый" goodLabel="Средний уровень" strongLabel="Сильный"/>
            <br/>
-                <p:outputLabel for="Radio" value="Пол:"/>
+                <p:outputLabel for="Radio" value="Пол: "/>
                 <p:selectOneRadio id="Radio" unselectable="true" value="#{homeController.gender}">
-                    <f:selectItem itemLabel="мужской" itemValue="m"/>
-                    <f:selectItem itemLabel="женский" itemValue="f"/>
+                    <f:selectItem itemLabel="мужской" itemValue="мужской"/>
+                    <f:selectItem itemLabel="женский" itemValue="женский"/>
                 </p:selectOneRadio>
 
-                <p:outputLabel for="oneMenu" value="Город:"/>
+                <p:outputLabel for="oneMenu" value="Город: "/>
                 <p:selectOneMenu id="oneMenu" style="width:125px" value="#{homeController.city}">
                     <f:selectItem itemLabel="Киев" itemValue="Киев"/>
                     <f:selectItem itemLabel="Львов" itemValue="Львов"/>

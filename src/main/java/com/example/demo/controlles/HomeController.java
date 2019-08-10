@@ -158,7 +158,6 @@ public class HomeController {
 
     public String Registration()
     {
-        setPhone(this.phone);
         return "registration.xhtml?faces-redirect=true";
     }
 

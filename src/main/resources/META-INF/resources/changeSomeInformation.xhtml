@@ -55,6 +55,12 @@
             </h:form>
 
             <h:form>
+                <h:outputText value="Номер телефона: "/>
+                <h:outputText value="#{homeController.phone}"/>
+            </h:form>
+
+
+            <h:form>
                 <h:outputText value="Дата рождения: "/>
                 <h:outputText value="#{homeController.date}">
                     <f:convertDateTime pattern="dd.MM.yyyy"/>

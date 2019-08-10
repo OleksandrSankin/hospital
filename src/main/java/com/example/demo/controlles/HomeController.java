@@ -42,7 +42,6 @@ public class HomeController {
     private String newPassword2;
 
 
-
     private boolean skip;
 
 
@@ -60,9 +59,9 @@ public class HomeController {
                 email = siteUser.getEmail();
                 name = siteUser.getName();
                 surname = siteUser.getSurname();
-                date=siteUser.getDateOfBirth();
-                city=siteUser.getCity();
-                gender=siteUser.getGender();
+                date = siteUser.getDateOfBirth();
+                city = siteUser.getCity();
+                gender = siteUser.getGender();
 
                 break;
             }
@@ -117,21 +116,37 @@ public class HomeController {
         this.password = password;
     }
 
-    public String getNewPassword1() { return newPassword1;}
+    public String getNewPassword1() {
+        return newPassword1;
+    }
 
-    public void setNewPassword1(String newPassword1) { this.newPassword1 = newPassword1; }
+    public void setNewPassword1(String newPassword1) {
+        this.newPassword1 = newPassword1;
+    }
 
-    public String getNewPassword2() { return newPassword2; }
+    public String getNewPassword2() {
+        return newPassword2;
+    }
 
-    public void setNewPassword2(String getNewPassword2) { this.newPassword2 = newPassword2; }
+    public void setNewPassword2(String getNewPassword2) {
+        this.newPassword2 = newPassword2;
+    }
 
-    public String getGender() { return gender; }
+    public String getGender() {
+        return gender;
+    }
 
-    public void setGender(String gender) { this.gender = gender; }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-    public String getCity() { return city; }
+    public String getCity() {
+        return city;
+    }
 
-    public void setCity(String city) { this.city = city; }
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public Date getDate() {
         return date;
@@ -141,7 +156,9 @@ public class HomeController {
         this.date = date;
     }
 
-    public String Registration() {
+    public String Registration()
+    {
+        setPhone(this.phone);
         return "registration.xhtml?faces-redirect=true";
     }
 
@@ -154,7 +171,7 @@ public class HomeController {
         return "userPage.xhtml?faces-redirect=true";
     }
 
-    public String ChangeSomeInformation(){
+    public String ChangeSomeInformation() {
         return "changeSomeInformation.xhtml?faces-redirect=true";
     }
 
@@ -168,17 +185,14 @@ public class HomeController {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
-    public void SetNewUserPassword(){
-        if(getNewPassword1()==getNewPassword2()){
-            password=newPassword1;
+    public void SetNewUserPassword() {
+        if (getNewPassword1() == getNewPassword2()) {
+            password = newPassword1;
+        } else {
         }
-        else {}
     }
 
-    CalendarView calendar = new CalendarView();
-    public void setCalendar(){
-        this.date = (Date) calendar.getDate();
-    }
+
 
     public void saveUser() {
         SiteUser siteUser = new SiteUser();
@@ -189,23 +203,18 @@ public class HomeController {
         siteUser.setGender(this.gender);
         siteUser.setCity(this.city);
         siteUser.setPassword(this.password);
-
+        siteUser.setPhone(this.phone);
 
         userRepository.save(siteUser);
     }
 
 
-
-
-
-
-//    --------------
+    //    --------------
     public String onFlowProcess(FlowEvent event) {
-        if(skip) {
+        if (skip) {
             skip = false;   //reset in case user goes back
             return "confirm";
-        }
-        else {
+        } else {
             return event.getNewStep();
         }
     }

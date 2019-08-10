@@ -133,18 +133,21 @@
         <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
             <p:outputLabel value=" Номер телефона:"/>
             <p:inputText value="+380 #{homeController.phone}"/>
-            <p:commandButton value="OK" oncomplete="PF('Registr2').show()"/>
+            <p:commandButton value="OK"
+                             action="#{homeController.Registration()}"/>
+<!--                             oncomplete="PF('Registr2').show()"-->
+
         </h:panelGrid>
     </p:dialog>
 
 
-    <p:dialog id="registrace2" widgetVar="Registr2">
-        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-            <p:outputLabel value="Код из смс:"/>
-            <p:inputText value=" #{homeController.kod}"/>
-            <p:commandButton value="OK" action="#{homeController.Registration()}"/>
-        </h:panelGrid>
-    </p:dialog>
+<!--    <p:dialog id="registrace2" widgetVar="Registr2">-->
+<!--        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">-->
+<!--            <p:outputLabel value="Код из смс:"/>-->
+<!--            <p:inputText value=" #{homeController.kod}"/>-->
+<!--            <p:commandButton value="OK" action="#{homeController.Registration()}"/>-->
+<!--        </h:panelGrid>-->
+<!--    </p:dialog>-->
 
 
 </html>

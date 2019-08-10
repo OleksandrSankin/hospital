@@ -56,7 +56,9 @@
 
             <h:form>
                 <h:outputText value="Дата рождения: "/>
-                <h:outputText value="#{calendarView.date}"/>
+                <h:outputText value="#{homeController.date}">
+                    <f:convertDateTime pattern="dd.MM.yyyy"/>
+                </h:outputText>
             </h:form>
 
             <h:form>

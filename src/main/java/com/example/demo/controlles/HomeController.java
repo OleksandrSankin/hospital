@@ -5,6 +5,7 @@ import com.example.demo.repos.CalendarView;
 import com.example.demo.repos.CarRepository;
 import com.example.demo.repos.SiteUser;
 import com.example.demo.repos.UserRepository;
+import org.primefaces.event.FlowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -41,6 +42,10 @@ public class HomeController {
     private String newPassword2;
 
 
+
+    private boolean skip;
+
+
     @Autowired
     private UserRepository userRepository;
 
@@ -55,8 +60,9 @@ public class HomeController {
                 email = siteUser.getEmail();
                 name = siteUser.getName();
                 surname = siteUser.getSurname();
-//                city=siteUser.getCity();
-//                gender=siteUser.getGender();
+                date=siteUser.getDateOfBirth();
+                city=siteUser.getCity();
+                gender=siteUser.getGender();
 
                 break;
             }
@@ -188,4 +194,27 @@ public class HomeController {
     }
 
 
+
+
+
+
+//    --------------
+    public String onFlowProcess(FlowEvent event) {
+        if(skip) {
+            skip = false;   //reset in case user goes back
+            return "confirm";
+        }
+        else {
+            return event.getNewStep();
+        }
+    }
+
+
+    public boolean isSkip() {
+        return skip;
+    }
+
+    public void setSkip(boolean skip) {
+        this.skip = skip;
+    }
 }

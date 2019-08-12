@@ -34,7 +34,7 @@
     </h:form>
     <!--////////////////////////////-->
 
-    <h:form>
+    <h:form id="userInformation">
         <h3>
             <h:outputText value="Добрый день, #{homeController.name} #{homeController.surname}"/>
         </h3>
@@ -42,37 +42,36 @@
 
         <br/>
 
-        <p:dataTable var="car" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="550">
+        <p:dataTable var="user" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="550"  value="#{homeController.userInformation}">
 
             <p:column headerText="дата" footerText="Date" width="30%">
-                <h:outputText value=""/>
+                <h:outputText value="#{user.dateOfEvent}">
+                    <f:convertDateTime pattern="dd.MM.yyyy" />
+                </h:outputText>
             </p:column>
             <p:column headerText="Рекомендации" footerText="Recommendations">
-                <h:outputText value=""/>
+                <h:outputText value="#{user.recommendations}"/>
             </p:column>
 
         </p:dataTable>
 
         <br/>
-        <p:commandButton value="Добавить информацию" oncomplete="PF('DEditor').show()"/>
+        <p:commandButton  value="Добавить информацию" oncomplete="PF('DEditor').show()"/>
         <br/>
     </h:form>
 
-
+<h:form>
     <p:dialog id="textEditor" widgetVar="Editor">
-        <h:form>
-            <p:textEditor widgetVar="editor1" value="#{homeController.recommendations}" height="100" />
-            <p:commandButton value="Готово"/>
-        </h:form>
+            <p:inputTextarea widgetVar="editor1" value="#{homeController.recommendations}" height="100" />
+            <p:commandButton value="Готово" action="#{homeController.saveUser()}" update="userInformation"/>
     </p:dialog>
 
 
     <p:dialog id="dateEditor" widgetVar="DEditor">
-        <h:form>
             <p:calendar id="button" value="#{homeController.dateOfEvent}" showOn="button"/>
             <p:commandButton value="Готово" oncomplete="PF('Editor').show()"/>
-        </h:form>
     </p:dialog>
+</h:form>
 
     <!--///////////////////////////-->
     <h:form>

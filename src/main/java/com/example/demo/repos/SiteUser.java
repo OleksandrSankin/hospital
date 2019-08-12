@@ -1,9 +1,6 @@
 package com.example.demo.repos;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -18,6 +15,8 @@ public class SiteUser {
     private Date dateOfBirth;
 
     private Date dateOfEvent;
+
+    @Column(length = 4000)
     private String recommendations;
 
 

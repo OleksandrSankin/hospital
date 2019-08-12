@@ -13,11 +13,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Named
 public class HomeController {
+    private List <SiteUser> userInformation=new ArrayList<>();
 
     private String name;
 
@@ -183,6 +185,15 @@ public class HomeController {
 
     public void setRecommendations(String recommendations) {
         this.recommendations = recommendations;
+    }
+
+    public List<SiteUser> getUserInformation() {
+        userInformation=userRepository.findAll();
+        return userInformation;
+    }
+
+    public void setUserInformation(List<SiteUser> userInformation) {
+        this.userInformation = userInformation;
     }
 
     public String Registration() {

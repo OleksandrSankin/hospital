@@ -49,6 +49,7 @@
 
                 <h:outputText value="E-mail: "/>
                 <p:inputText value="#{homeController.email}"/>
+                <h:outputText/>
 
                 <p:growl id="msgs" showDetail="true"/>
                 <p:outputLabel for="button" value="Дата рождения: "/>
@@ -58,7 +59,7 @@
                 <p:password id="withFeedback" value="#{homeController.password}"
                             feedback="true" promptLabel="Пожалуйста, введите пароль"
                             weakLabel="Слабый" goodLabel="Средний уровень" strongLabel="Сильный"/>
-           <br/>
+
                 <p:outputLabel for="Radio" value="Пол: "/>
                 <p:selectOneRadio id="Radio" unselectable="true" value="#{homeController.gender}">
                     <f:selectItem itemLabel="мужской" itemValue="мужской"/>

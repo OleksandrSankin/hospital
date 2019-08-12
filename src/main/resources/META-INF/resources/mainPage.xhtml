@@ -121,8 +121,8 @@
 
 <p:dialog id="vchod" widgetVar="Vchod">
     <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-        <p:outputLabel value=" Номер телефона:"/>
-        <p:inputText value="#{homeController.phone}"/>
+        <p:outputLabel for="phoneWithExt1" value=" Номер телефона:"/>
+        <p:inputMask id="phoneWithExt1" value="#{homeController.phone}" mask="(999) 999-99-99?"/>
         <p:outputLabel value=" Пароль:"/>
         <p:inputText value="#{homeController.kod}"/>
         <p:commandButton value="OK"/>
@@ -132,8 +132,8 @@
 <p:dialog id="registrace" widgetVar="Registr">
     <h:form>
         <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-            <p:outputLabel value=" Номер телефона:"/>
-            <p:inputText value="#{homeController.phone}"/>
+            <p:outputLabel for="phoneWithExt" value=" Номер телефона:"/>
+            <p:inputMask id="phoneWithExt" value="#{homeController.phone}" mask="(999) 999-99-99?"/>
             <p:commandButton value="OK"
                              action="#{homeController.Registration()}"/>
             <!--                             oncomplete="PF('Registr2').show()"-->

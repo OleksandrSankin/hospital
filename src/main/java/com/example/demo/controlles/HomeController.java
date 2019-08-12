@@ -214,20 +214,17 @@ public class HomeController {
     }
 
     public void PositiveAnswer() {
-        addMessage("Готово", "Данные сохранены");
-        saveUser();
+        if(newPassword1.equals(newPassword2)) {
+            saveUser();
+            addMessage("Готово", "Данные сохранены");
+        } else {
+            addMessage("nepravilny parol", "");
+        }
     }
 
     public void addMessage(String summary, String detail) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-
-    public void SetNewUserPassword() {
-        if (getNewPassword1() == getNewPassword2()) {
-            password = newPassword1;
-        } else {
-        }
     }
 
 

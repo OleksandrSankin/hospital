@@ -37,6 +37,11 @@ public class HomeController {
 
     private String password;
 
+    private String text;
+
+    private Date dateOfEvent;
+    private String recommendations;
+
     private String newPassword1;
 
     private String newPassword2;
@@ -156,8 +161,31 @@ public class HomeController {
         this.date = date;
     }
 
-    public String Registration()
-    {
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Date getDateOfEvent() {
+        return dateOfEvent;
+    }
+
+    public void setDateOfEvent(Date dateOfEvent) {
+        this.dateOfEvent = dateOfEvent;
+    }
+
+    public String getRecommendations() {
+        return recommendations;
+    }
+
+    public void setRecommendations(String recommendations) {
+        this.recommendations = recommendations;
+    }
+
+    public String Registration() {
         return "registration.xhtml?faces-redirect=true";
     }
 
@@ -192,7 +220,6 @@ public class HomeController {
     }
 
 
-
     public void saveUser() {
         SiteUser siteUser = new SiteUser();
         siteUser.setName(this.name);
@@ -204,6 +231,8 @@ public class HomeController {
         siteUser.setPassword(this.password);
         siteUser.setPhone(this.phone);
 
+        siteUser.setDateOfEvent(this.dateOfEvent);
+        siteUser.setRecommendations(this.recommendations);
         userRepository.save(siteUser);
     }
 

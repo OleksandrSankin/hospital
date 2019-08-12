@@ -17,6 +17,9 @@ public class SiteUser {
     private String city;
     private Date dateOfBirth;
 
+    private Date dateOfEvent;
+    private String recommendations;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,4 +80,12 @@ public class SiteUser {
     public String getCity(){return city;}
 
     public void setGender(String gender) { this.gender = gender; }
+
+    public Date getDateOfEvent(){return dateOfEvent;}
+
+    public void setDateOfEvent(Date dateOfEvent) { this.dateOfEvent = dateOfEvent; }
+
+    public String getRecommendations() { return recommendations; }
+
+    public void setRecommendations(String recommendations) { this.recommendations = recommendations; }
 }

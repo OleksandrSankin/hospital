@@ -36,7 +36,7 @@
 
     <h:form>
         <h3>
-        <h:outputText value="Добрый день, #{homeController.name} #{homeController.surname}"/>
+            <h:outputText value="Добрый день, #{homeController.name} #{homeController.surname}"/>
         </h3>
 
 
@@ -45,17 +45,34 @@
         <p:dataTable var="car" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="550">
 
             <p:column headerText="дата" footerText="Date" width="30%">
-                <h:outputText value="" />
+                <h:outputText value=""/>
             </p:column>
             <p:column headerText="Рекомендации" footerText="Recommendations">
-                <h:outputText value="" />
+                <h:outputText value=""/>
             </p:column>
 
         </p:dataTable>
 
-        <p:commandButton value="Добавить информацию" action=""/>
+        <br/>
+        <p:commandButton value="Добавить информацию" oncomplete="PF('DEditor').show()"/>
+        <br/>
     </h:form>
 
+
+    <p:dialog id="textEditor" widgetVar="Editor">
+        <h:form>
+            <p:textEditor widgetVar="editor1" value="#{homeController.recommendations}" height="100" />
+            <p:commandButton value="Готово"/>
+        </h:form>
+    </p:dialog>
+
+
+    <p:dialog id="dateEditor" widgetVar="DEditor">
+        <h:form>
+            <p:calendar id="button" value="#{homeController.dateOfEvent}" showOn="button"/>
+            <p:commandButton value="Готово" oncomplete="PF('Editor').show()"/>
+        </h:form>
+    </p:dialog>
 
     <!--///////////////////////////-->
     <h:form>

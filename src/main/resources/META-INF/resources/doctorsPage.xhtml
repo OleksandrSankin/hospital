@@ -33,7 +33,15 @@
         </div>
     </h:form>
     <!--////////////////////////////-->
+    <h3>Patients</h3>
+    <p:dataTable var="user" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="550"
+                 value="#{homeController.userInformation}">
 
+        <p:column headerText="patient" footerText="Patient">
+            <h:outputText value="#{user.name}  #{user.surname}"/>
+        </p:column>
+
+    </p:dataTable>
 
     <!--////////////////////////////-->
     <h:form>

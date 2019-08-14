@@ -14,33 +14,6 @@
 <h:body>
 
 
-    <h:form>
-        <p:growl id="growl" sticky="true" showDetail="true"/>
-
-        <p:wizard flowListener="#{homeController.onFlowProcess}">
-        <p:panel header="Personal Details">
-        <p:messages />
-        <h:panelGrid columns="2" columnClasses="label, value">
-        <h:outputText value="Firstname: *" />
-        <p:inputText value="#{homeController.name}" required="true" label="Firstname"/>
-
-        <h:outputText value="Lastname: *" />
-        <p:inputText value="#{homeController.surname}" required="true" label="Lastname"/>
-        </h:panelGrid>
-        </p:panel>
-        </p:wizard>
-    </h:form>
-
-<!--    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">-->
-<!--        <p:panelGrid id="display" columns="2" columnClasses="label,value">-->
-
-<!--            <h:outputText value="Button:"/>-->
-<!--            <h:outputText value="#{calendarView.date}">-->
-<!--                <f:convertDateTime pattern="MM/dd/yyyy"/>-->
-<!--            </h:outputText>-->
-<!--        </p:panelGrid>-->
-<!--    </p:dialog>-->
-
 </h:body>
 
 </html>

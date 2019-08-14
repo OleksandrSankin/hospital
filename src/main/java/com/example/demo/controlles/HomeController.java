@@ -212,6 +212,7 @@ public class HomeController {
     public String ChangeSomeInformation() {
         return "changeSomeInformation.xhtml?faces-redirect=true";
     }
+    public String LogInPage(){return"logInPage.xhtml?faces-redirect=true";}
 
     public void PositiveAnswer() {
         if(newPassword1.equals(newPassword2)) {
@@ -245,22 +246,4 @@ public class HomeController {
     }
 
 
-    //    --------------
-    public String onFlowProcess(FlowEvent event) {
-        if (skip) {
-            skip = false;   //reset in case user goes back
-            return "confirm";
-        } else {
-            return event.getNewStep();
-        }
-    }
-
-
-    public boolean isSkip() {
-        return skip;
-    }
-
-    public void setSkip(boolean skip) {
-        this.skip = skip;
-    }
 }

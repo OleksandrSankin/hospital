@@ -12,26 +12,23 @@
 </h:head>
 
 <h:body>
-    <h:form>
-        <div class="ui-g">
-            <div class="ui-g-3">
-                <h:graphicImage library="images" name="tucnak.png" width="43%"/>
-            </div>
-            <div class="ui-g-1"></div>
-            <div class="ui-g-2" style="padding-top: 3%">
-                <p:commandButton value="главная страница" action="#{homeController.Home()}"/>
-            </div>
-            <div class="ui-g-2" style="padding-top: 3%">
-                <p:commandButton value="регистрация" oncomplete="PF('Registr').show();"/>
-            </div>
-            <div class="ui-g-2" style="padding-top: 3%">
-                <p:commandButton value="вход" oncomplete="PF('Vchod').show();"/>
-            </div>
-            <div class="ui-g-1" align="right" style="padding-top: 3%">
-                <p:commandButton value=" ? "/>
-            </div>
+     <h:form>
+    <div class="ui-g">
+        <div class="ui-g-3">
+            <h:graphicImage library="images" name="tucnak.png" width="43%"/>
         </div>
-    </h:form>
+        <div class="ui-g-3"></div>
+        <div class="ui-g-2" style="padding-top: 3%">
+            <p:commandButton value="Главная страница" action="#{homeController.Home()}"/>
+        </div>
+        <div class="ui-g-2" style="padding-top: 3%">
+            <p:commandButton value="Редактировать данные" action="#{homeController.ChangeSomeInformation()}"/>
+        </div>
+        <div class="ui-g-2" style="padding-top: 3%">
+            <p:commandButton value="Выход" />
+        </div>
+    </div>
+</h:form>
     <!--////////////////////////////-->
 
 
@@ -85,72 +82,65 @@
 
     </div>
 
-
-<!--    &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-
-<h:form>
-    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
-        <p:panelGrid id="display" columns="2" columnClasses="label,value">
-
-            <h:outputText value="Button:"/>
-            <h:outputText value="#{calendarView.date}">
-                <f:convertDateTime pattern="MM/dd/yyyy"/>
-            </h:outputText>
-        </p:panelGrid>
-    </p:dialog>
-
-
-    <p:dialog header="Изменить пароль" widgetVar="changePass1" minHeight="40">
-        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-            <p:outputLabel value=" Старый пароль: "/>
-            <p:password id="withFeedback" value="#{homeController.password}"/>
-            <p:commandButton value="OK" oncomplete="PF('changePassword2').show()"/>
-        </h:panelGrid>
-    </p:dialog>
-
-    <p:growl id="message" showDetail="true" />
-
-    <p:dialog id="registrace2" widgetVar="changePassword2">
-        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-            <p:outputLabel value="Введите новый пароль: "/>
-            <p:password id="withFeedbackk" value="#{homeController.newPassword1}"
-                        feedback="true" promptLabel="Пожалуйста, введите пароль"
-                        weakLabel="Слабый" goodLabel="Средний уровень" strongLabel="Сильный"/>
-            <p:outputLabel value="Повторите новый пароль: "/>
-            <p:password value="#{homeController.newPassword2}"/>
-            <p:commandButton value="OK"  action="#{homeController.PositiveAnswer()}" update="message" />
-        </h:panelGrid>
-    </p:dialog>
-
-</h:form>
-
     <!--/////////////////-->
     <h:form>
         <div class="p-col">
-            <div class="box" style="height: 150px; background-image: linear-gradient(cornflowerblue, white)">
+            <div class="box" style="height: 200px; background-image: linear-gradient(cornflowerblue, white)">
                 <div class="ui-g">
                     <div class="ui-g-6">
-                        <pre>
-
-                        Контакти:
-                        +38 044 580-10-70
-                        +38 073 580-10-70
-                        +38 066 580-10-70
-                        +38 068 580-10-70
-                        </pre>
+                        <h3>
+                            Контакти: <br/>
+                            +38 044 580-10-70 <br/>
+                            +38 073 580-10-70 <br/>
+                            +38 066 580-10-70 <br/>
+                            +38 068 580-10-70 <br/>
+                        </h3>
                     </div>
                     <div class="ui-g-6">
-                        <pre>
-
-                        Час роботи:
-                        Пн. - Пт. з 8:00 до 18:00
-                        Сб. з 9:00 до 16:00
-                        </pre>
+                        <h3>
+                            Час роботи: <br/>
+                            Пн. - Пт. з 8:00 до 18:00 <br/>
+                            Сб. з 9:00 до 16:00 <br/>
+                        </h3>
                     </div>
                 </div>
             </div>
         </div>
 
+        <h:form>
+            <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                    <h:outputText value="Button:"/>
+                    <h:outputText value="#{calendarView.date}">
+                        <f:convertDateTime pattern="MM/dd/yyyy"/>
+                    </h:outputText>
+                </p:panelGrid>
+            </p:dialog>
+
+
+            <p:dialog header="Изменить пароль" widgetVar="changePass1" minHeight="40">
+                <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                    <p:outputLabel value=" Старый пароль: "/>
+                    <p:password id="withFeedback" value="#{homeController.password}"/>
+                    <p:commandButton value="OK" oncomplete="PF('changePassword2').show()"/>
+                </h:panelGrid>
+            </p:dialog>
+
+            <p:growl id="message" showDetail="true" />
+
+            <p:dialog id="registrace2" widgetVar="changePassword2">
+                <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                    <p:outputLabel value="Введите новый пароль: "/>
+                    <p:password id="withFeedbackk" value="#{homeController.newPassword1}"
+                                feedback="true" promptLabel="Пожалуйста, введите пароль"
+                                weakLabel="Слабый" goodLabel="Средний уровень" strongLabel="Сильный"/>
+                    <p:outputLabel value="Повторите новый пароль: "/>
+                    <p:password value="#{homeController.newPassword2}"/>
+                    <p:commandButton value="OK"  action="#{homeController.PositiveAnswer()}" update="message" />
+                </h:panelGrid>
+            </p:dialog>
+
+        </h:form>
     </h:form>
 
 </h:body>

@@ -14,11 +14,11 @@
 <h:body>
 
     <h:form>
-        <div class="ui-g">
+            <div class="ui-g">
             <div class="ui-g-3">
                 <h:graphicImage library="images" name="tucnak.png" width="43%"/>
             </div>
-            <div class="ui-g-1"></div>
+            <div class="ui-g-3"></div>
             <div class="ui-g-2" style="padding-top: 3%">
                 <p:commandButton value="главная страница" action="#{homeController.Home()}"/>
             </div>
@@ -26,10 +26,7 @@
                 <p:commandButton value="регистрация" oncomplete="PF('Registr').show();"/>
             </div>
             <div class="ui-g-2" style="padding-top: 3%">
-                <p:commandButton value="вход" oncomplete="PF('Vchod').show();"/>
-            </div>
-            <div class="ui-g-1" align="right" style="padding-top: 3%">
-                <p:commandButton value=" ? " action="#{homeController.saveCar()}"/>
+                <p:commandButton value="вход" action="#{homeController.LogInPage()}"/>
             </div>
         </div>
     </h:form>
@@ -51,58 +48,55 @@
             </div>
             </h:form>
             </div>
-<!--            -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-<h:form>
-    <div class="p-col">
-        <div class="box" style="height: 200px; background-image: linear-gradient(cornflowerblue, white)">
-            <div class="ui-g">
-                <div class="ui-g-6">
-                    <h3>
-                        Контакти: <br/>
-                        +38 044 580-10-70 <br/>
-                        +38 073 580-10-70 <br/>
-                        +38 066 580-10-70 <br/>
-                        +38 068 580-10-70 <br/>
-                    </h3>
-                </div>
-                <div class="ui-g-6">
-                    <h3>
-                        Час роботи: <br/>
-                        Пн. - Пт. з 8:00 до 18:00 <br/>
-                        Сб. з 9:00 до 16:00 <br/>
-                    </h3>
+<!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45-->
+    <h:form>
+        <div class="p-col">
+            <div class="box" style="height: 200px; background-image: linear-gradient(cornflowerblue, white)">
+                <div class="ui-g">
+                    <div class="ui-g-6">
+                        <h3>
+                            Контакти: <br/>
+                            +38 044 580-10-70 <br/>
+                            +38 073 580-10-70 <br/>
+                            +38 066 580-10-70 <br/>
+                            +38 068 580-10-70 <br/>
+                        </h3>
+                    </div>
+                    <div class="ui-g-6">
+                        <h3>
+                            Час роботи: <br/>
+                            Пн. - Пт. з 8:00 до 18:00 <br/>
+                            Сб. з 9:00 до 16:00 <br/>
+                        </h3>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</h:form>
-</h:body>
 
-<h:form>
+        <p:dialog id="registrace" widgetVar="Registr">
+            <h:form>
+                <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                    <p:outputLabel for="phoneWithExt" value=" Номер телефона:"/>
+                    <p:inputMask id="phoneWithExt" value="#{homeController.phone}" mask="(999) 999-99-99?"/>
+                    <p:commandButton value="OK"
+                                     action="#{homeController.Registration()}"
+                                     oncomplete="PF('Registr2').show()"/>
 
-<p:dialog id="registrace" widgetVar="Registr">
-    <h:form>
-        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-            <p:outputLabel for="phoneWithExt" value=" Номер телефона:"/>
-            <p:inputMask id="phoneWithExt" value="#{homeController.phone}" mask="(999) 999-99-99?"/>
-            <p:commandButton value="OK"
-                             action="#{homeController.Registration()}"
-                                        oncomplete="PF('Registr2').show()"/>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
 
-        </h:panelGrid>
+
+        <p:dialog id="registrace2" widgetVar="Registr2">
+            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                <p:outputLabel value="Код из смс:"/>
+                <p:inputText value=" #{homeController.kod}"/>
+                <p:commandButton value="OK" action="#{homeController.Registration()}"/>
+            </h:panelGrid>
+        </p:dialog>
+
     </h:form>
-</p:dialog>
-
-
-    <p:dialog id="registrace2" widgetVar="Registr2">
-        <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-            <p:outputLabel value="Код из смс:"/>
-            <p:inputText value=" #{homeController.kod}"/>
-            <p:commandButton value="OK" action="#{homeController.Registration()}"/>
-        </h:panelGrid>
-    </p:dialog>
-
-</h:form>
+</h:body>
 
 
 </html>

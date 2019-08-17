@@ -27,18 +27,10 @@
             </div>
             <div class="ui-g-2" style="padding-top: 3%">
                 <p:commandButton value="вход" oncomplete="PF('Vchod').show();"/>
-                <!--            <p:commandLink id="menu3">-->
-                <!--                <h:outputText value="menu 3" oncomplete="PF('myDialog').show();" update="mydialog"/>-->
-                <!--            </p:commandLink>-->
             </div>
             <div class="ui-g-1" align="right" style="padding-top: 3%">
                 <p:commandButton value=" ? " action="#{homeController.saveCar()}"/>
             </div>
-            <!--                <div class="ui-g-1">-->
-            <!--                    <p:button icon="pi pi-search" style="margin-right:20px;" title="Icon Only">-->
-            <!--                        <f:param name="productId" value="30"/>-->
-            <!--                    </p:button>-->
-            <!--                </div>-->
         </div>
     </h:form>
 
@@ -48,10 +40,12 @@
                 <h:panelGrid id="grid" colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
                     <p:outputLabel for="phoneWithExt1" value=" Номер телефона:"/>
                     <p:inputMask id="phoneWithExt1" value="#{homeController.phone}" mask="(999) 999-99-99?" required="true" />
-                    <p:message for="phoneWithExt1" display="text" />
+                    <p:message for="phoneWithExt1" />
+
                     <p:outputLabel for="password" value=" Пароль:"/>
                     <p:inputText id="password" value="#{homeController.password}" required="true" />
-                    <p:message for="password" display="mnau" />
+                    <p:message for="password"/>
+
                     <p:commandButton value="OK" update="grid"/>
                 </h:panelGrid>
             </div>

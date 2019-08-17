@@ -35,11 +35,10 @@
     <!--////////////////////////////-->
 
 
-
     <div class="box" style=" background-image: linear-gradient(lavender, bisque) ;size: auto" align="center">
         <h2 align="center"> Регистрация </h2>
         <h:form>
-        <h:panelGrid columns="2" cellpadding="15" style="margin-bottom:200px">
+            <h:panelGrid columns="2" cellpadding="15" style="margin-bottom:200px">
 
                 <h:outputText value="Имя: "/>
                 <p:inputText value="#{homeController.name}"/>
@@ -47,18 +46,9 @@
                 <h:outputText value="Фамилия: "/>
                 <p:inputText value="#{homeController.surname}"/>
 
-                <h:outputText value="E-mail: "/>
-                <p:inputText value="#{homeController.email}"/>
-                <h:outputText/>
-
                 <p:growl id="msgs" showDetail="true"/>
                 <p:outputLabel for="button" value="Дата рождения: "/>
                 <p:calendar id="button" value="#{homeController.date}" showOn="button"/>
-
-                <h:outputText value="Пароль: "/>
-                <p:password id="withFeedback" value="#{homeController.password}"
-                            feedback="true" promptLabel="Пожалуйста, введите пароль"
-                            weakLabel="Слабый" goodLabel="Средний уровень" strongLabel="Сильный"/>
 
                 <p:outputLabel for="Radio" value="Пол: "/>
                 <p:selectOneRadio id="Radio" unselectable="true" value="#{homeController.gender}">
@@ -74,8 +64,16 @@
                     <f:selectItem itemLabel="Днепр" itemValue="Днепр"/>
                 </p:selectOneMenu>
 
+                <h:outputText value="E-mail: "/>
+                <p:inputText value="#{homeController.email}"/>
+                <h:outputText/>
 
-        </h:panelGrid>
+                <h:outputText value="Пароль: "/>
+                <p:password id="withFeedback" value="#{homeController.password}"
+                            feedback="true" promptLabel="Пожалуйста, введите пароль"
+                            weakLabel="Слабый" goodLabel="Средний уровень" strongLabel="Сильный"/>
+
+            </h:panelGrid>
             <p:commandButton value="Готово" action="#{homeController.UserPage()}">
             </p:commandButton>
         </h:form>

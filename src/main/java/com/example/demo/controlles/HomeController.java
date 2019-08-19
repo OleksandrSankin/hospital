@@ -3,6 +3,7 @@ package com.example.demo.controlles;
 import com.example.demo.Car;
 import com.example.demo.repos.CalendarView;
 import com.example.demo.repos.CarRepository;
+import com.example.demo.repos.SecurityRole;
 import com.example.demo.repos.SiteUser;
 import com.example.demo.repos.UserRepository;
 import org.primefaces.event.FlowEvent;
@@ -58,6 +59,8 @@ public class HomeController {
 
     @PostConstruct
     private void init() {
+        createAdminUserIfNotExists();
+
         List<SiteUser> all = userRepository.findAll();
 
         for (int i = 0; i < all.size(); i++) {
@@ -248,5 +251,21 @@ public class HomeController {
         userRepository.save(siteUser);
     }
 
+    private void createAdminUserIfNotExists() {
+        //--- создаем при старте админского пользователя в базе если его не существует
+        if (userRepository.findByPhone("(999) 999-99-99").isEmpty()) {
+            SiteUser admin = new SiteUser();
+            admin.setPhone("(999) 999-99-99");
+            admin.setPassword("vasya");
+            admin.setRole(SecurityRole.ROLE_ADMIN);
+            admin.setName("Vasya");
+            admin.setSurname("Vasya");
+            admin.setCity("Kiev");
+            admin.setEmail("vasya@vasya");
+            admin.setGender("M");
+            admin.setDateOfBirth(new Date());
+            userRepository.save(admin);
+        }
+    }
 
 }

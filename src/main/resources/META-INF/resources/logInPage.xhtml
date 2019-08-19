@@ -13,6 +13,13 @@
 
 <h:body>
 
+    <p:growl id="growl1" life="5000" keepAlive="true"/>
+
+    <f:metadata>
+        <f:viewParam name="error" value="#{loginController.error}"/>
+        <f:viewAction action="#{loginController.showMessageAboutWrongPasswordOrPhone}"/>
+    </f:metadata>
+
     <h:form>
             <div class="ui-g">
             <div class="ui-g-3">
@@ -32,18 +39,18 @@
     </h:form>
 
         <div class="p-col">
-            <h:form>
+            <h:form prependId="false">
             <div class="box" style="height: 500px; background-image: linear-gradient(white, cornflowerblue); size: auto" align="center">
                 <h:panelGrid id="grid" colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-                    <p:outputLabel for="phoneWithExt1" value=" Номер телефона:"/>
-                    <p:inputMask id="phoneWithExt1" value="#{homeController.phone}" mask="(999) 999-99-99?" required="true" />
-                    <p:message for="phoneWithExt1" />
+                    <p:outputLabel for="phone_number" value=" Номер телефона:"/>
+                    <p:inputMask id="phone_number" mask="(999) 999-99-99" required="true" />
+                    <p:message for="phone_number" />
 
                     <p:outputLabel for="password" value=" Пароль:"/>
-                    <p:inputText id="password" value="#{homeController.password}" required="true" />
+                    <p:password id="password" required="true" />
                     <p:message for="password"/>
 
-                    <p:commandButton value="OK" update="grid"/>
+                    <p:commandButton value="Войти" ajax="false" />
                 </h:panelGrid>
             </div>
             </h:form>

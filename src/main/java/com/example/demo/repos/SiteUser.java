@@ -19,6 +19,8 @@ public class SiteUser {
     @Column(length = 4000)
     private String recommendations;
 
+    @Enumerated(EnumType.STRING)
+    private SecurityRole role;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -87,4 +89,12 @@ public class SiteUser {
     public String getRecommendations() { return recommendations; }
 
     public void setRecommendations(String recommendations) { this.recommendations = recommendations; }
+
+    public SecurityRole getRole() {
+        return role;
+    }
+
+    public void setRole(SecurityRole role) {
+        this.role = role;
+    }
 }

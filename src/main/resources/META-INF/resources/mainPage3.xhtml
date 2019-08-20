@@ -8,68 +8,50 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>MainPage</title>
+    <title>MainPage3</title>
 </h:head>
 
 <h:body>
-
     <h:form>
-        <p:messages id="messages" showDetail="true" closable="true">
-            <p:autoUpdate />
-        </p:messages>
+        <h:outputText value="mainpage3"/>
 
-        <div class="box" style=" background-image: linear-gradient(lavender, bisque) ;size: auto" align="center">
-            <h2 align="center"> Регистрация </h2>
-            <h:form>
-                <h:panelGrid id="grid" columns="3" cellpadding="15" style="margin-bottom:200px">
-
-                    <p:outputLabel for="txt" value="Text:" />
-                    <p:inputText id="txt" required="true" />
-                    <p:message for="txt" />
-
-                    <p:outputLabel for="password" value=" Пароль:"/>
-                    <p:inputText id="password" value="#{homeController.password}" required="true" />
-                    <p:message for="password"/>
-
-                    <p:outputLabel for="name" value="Имя:"/>
-                    <p:inputText id="name" value="#{homeController.name}" required="true" />
-                    <p:message for="name" display="text" />
+        <!--        <p:dialog visible="true" widgetvar="Registr1">-->
+        <!--            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">-->
+        <!--                <p:outputLabel for="phoneWithExt" value=" Номер телефона:"/>-->
+        <!--                <p:inputMask id="phoneWithExt" value="#{homeController.phone}" mask="(999) 999-99-99"/>-->
+<!--                        <p:commandButton value="OK"-->
+<!--                                         oncomplete="PF('Registr1').hide(); PF('Registr2').show()"/>-->
+        <!--            </h:panelGrid>-->
+        <!--        </p:dialog>-->
 
 
-                    <p:outputLabel for="surname" value="Фамилия: "/>
-                    <p:inputText id="surname" value="#{homeController.surname}" required="true"/>
-                    <p:message for="surname" display="text" />
+        <!--        <p:dialog  widgetVar="Registr2">-->
+        <!--            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">-->
+        <!--                <p:outputLabel value="Код из смс:"/>-->
+        <!--                <p:inputText value=" #{homeController.kod}"/>-->
+        <!--                <p:commandButton value="OK" oncomplete="PF('Registr2').hide()"/>-->
+        <!--            </h:panelGrid>-->
+        <!--        </p:dialog>-->
 
-                    <p:outputLabel for="email" value="E-mail: "/>
-                    <p:inputText id="email" value="#{homeController.email}" required="true"/>
-                    <p:message for="email" display="text" />
-
-                    <p:outputLabel for="withFeedback" value="Пароль: "/>
-                    <p:password id="withFeedback" value="#{homeController.password}"
-                                feedback="true" promptLabel="Пожалуйста, введите пароль"
-                                weakLabel="Слабый" goodLabel="Средний уровень" strongLabel="Сильный"
-                                required="true" />
-                    <p:message for="withFeedback" display="text" />
-
+        <h:form>
+            <p:dialog widgetVar="Registr1" visible="true" closable="false">
+                <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                    <p:outputLabel for="phoneWithExt" value=" Номер телефона:"/>
+                    <p:inputMask id="phoneWithExt" value="#{homeController.phone}" mask="(999) 999-99-99"/>
+                    <p:commandButton value="Готово" oncomplete="PF('Registr1').hide(); PF('Registr2').show()"/>
                 </h:panelGrid>
-                <p:commandButton id="submitButton" value="Готово" update="grid" action="#{homeController.UserPage()}" >
-                </p:commandButton>
-            </h:form>
-        </div>
+            </p:dialog>
 
-
-        <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
-            <p:panelGrid id="display" columns="2" columnClasses="label,value">
-
-                <h:outputText value="Button:"/>
-                <h:outputText value="#{calendarView.date}">
-                    <f:convertDateTime pattern="MM/dd/yyyy"/>
-                </h:outputText>
-            </p:panelGrid>
-        </p:dialog>
+            <p:dialog  widgetVar="Registr2" closable="false">
+                <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                    <p:outputLabel value="Код из смс:"/>
+                    <p:inputText value=" #{homeController.kod}"/>
+                    <p:commandButton value="Готово" oncomplete="PF('Registr2').hide();"/>
+                </h:panelGrid>
+            </p:dialog>
+        </h:form>
 
     </h:form>
-
-
 </h:body>
+
 </html>

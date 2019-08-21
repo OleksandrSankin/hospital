@@ -53,7 +53,25 @@
 
         </p:dataTable>
 
+        <br/>
+        <p:commandButton value="Добавить информацию" oncomplete="PF('DEditor').show()"/>
+        <br/>
     </h:form>
+
+    <h:form>
+        <p:dialog id="textEditor" widgetVar="Editor">
+            <p:ajax event="close"/>
+            <p:inputTextarea widgetVar="editor1" value="#{homeController.recommendations}" height="100"/>
+            <p:commandButton value="Готово" action="#{homeController.saveUser()}" update="userInformation" oncomplete="PF('Editor').hide();"/>
+        </p:dialog>
+
+
+        <p:dialog id="dateEditor" widgetVar="DEditor" >
+            <p:calendar id="button" value="#{homeController.dateOfEvent}" showOn="button"/>
+            <p:commandButton value="Готово"  oncomplete="PF('DEditor').hide(); PF('Editor').show()"/>
+        </p:dialog>
+    </h:form>
+
     <!--///////////////////////////-->
     <h:form>
         <div class="p-col">

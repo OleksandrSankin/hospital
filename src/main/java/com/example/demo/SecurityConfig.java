@@ -1,5 +1,6 @@
 package com.example.demo;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,9 +8,17 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import java.io.IOException;
+import java.util.Collection;
+
+import static com.example.demo.repos.SecurityRole.ROLE_ADMIN;
+import static com.example.demo.repos.SecurityRole.ROLE_USER;
 
 @Configuration
 @EnableWebSecurity
@@ -35,7 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .usernameParameter("phone_number")
                     .passwordParameter("password")
                     .failureUrl("/logInPage.xhtml?error=true")
-                    .defaultSuccessUrl("/doctorsPage.xhtml")
+//                    .defaultSuccessUrl("/doctorsPage.xhtml")
+                    .successHandler((request, response, authentication) -> forward(response, authentication))
                     .and()
                     .logout()
                     .logoutSuccessUrl("/logInPage.xhtml");
@@ -66,5 +76,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery("SELECT PHONE AS USERNAME, PASSWORD, 1 AS ENABLED FROM SITE_USER WHERE PHONE = ?")
                 .authoritiesByUsernameQuery("SELECT PHONE AS USERNAME, ROLE AS ROLE FROM SITE_USER WHERE PHONE = ?");
+    }
+
+    private void forward(HttpServletResponse response, Authentication authentication) throws IOException {
+        Collection<? extends GrantedAuthority> auths = authentication.getAuthorities();
+        for (GrantedAuthority authorities : auths) {
+            if (authorities.getAuthority().equals(ROLE_ADMIN.name())) {
+                response.sendRedirect(response.encodeURL("userPageD.xhtml"));
+            } else if (authorities.getAuthority().equals(ROLE_USER.name())) {
+                response.sendRedirect(response.encodeURL("userPage.xhtml"));
+            }
+        }
     }
 }

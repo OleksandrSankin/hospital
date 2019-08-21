@@ -248,6 +248,7 @@ public class HomeController {
         siteUser.setCity(this.city);
         siteUser.setPassword(this.password);
         siteUser.setPhone(this.phone);
+        siteUser.setRole(SecurityRole.ROLE_USER);
 
         siteUser.setDateOfEvent(this.dateOfEvent);
         siteUser.setRecommendations(this.recommendations);

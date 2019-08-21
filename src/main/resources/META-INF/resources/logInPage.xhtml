@@ -47,7 +47,7 @@
                     <p:password id="password" required="true" />
                     <p:message for="password"/>
 
-                    <p:commandButton value="Войти" ajax="false" />
+                    <p:commandButton value="Войти" ajax="false" action="#{homeController.UserPage}"/>
                 </h:panelGrid>
             </div>
             </h:form>
@@ -76,28 +76,6 @@
                 </div>
             </div>
         </div>
-
-        <p:dialog id="registrace" widgetVar="Registr">
-            <h:form>
-                <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-                    <p:outputLabel for="phoneWithExt" value=" Номер телефона:"/>
-                    <p:inputMask id="phoneWithExt" value="#{homeController.phone}" mask="(999) 999-99-99?"/>
-                    <p:commandButton value="OK"
-                                     action="#{homeController.Registration()}"
-                                     oncomplete="PF('Registr2').show()"/>
-
-                </h:panelGrid>
-            </h:form>
-        </p:dialog>
-
-
-        <p:dialog id="registrace2" widgetVar="Registr2">
-            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-                <p:outputLabel value="Код из смс:"/>
-                <p:inputText value=" #{homeController.kod}"/>
-                <p:commandButton value="OK" action="#{homeController.Registration()}"/>
-            </h:panelGrid>
-        </p:dialog>
 
     </h:form>
 </h:body>

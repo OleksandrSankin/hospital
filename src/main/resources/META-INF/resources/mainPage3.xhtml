@@ -13,24 +13,25 @@
 
 <h:body>
     <h:form id="form">
+    <p:dataTable var="user" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="550"
+                 value="#{homeController.userInformation}">
 
-        <h:panelGrid columns="3" cellpadding="15" style="margin-bottom:200px">
-            <h:outputText value="Имя: "/>
-            <h:outputText value="#{homeController.name}"/>
-            <p:commandButton value="изменить" onclick="PF('dlgName').show();"/>
-
-            <h:outputText value="Фамилия: "/>
-            <h:outputText value="#{homeController.surname}"/>
-        </h:panelGrid>
-
-
-        <p:dialog header="Введите новое имя" widgetVar="dlgName" minHeight="40">
-            <p:inputText placeholder="Введите новое имя" value="#{homeController.name}"/>
-            <p:commandButton value="изменить" action="#{homeController.saveUser()}" oncomplete="PF('dlhName').hide();" update="form" />
-        </p:dialog>
-
-
+        <p:column headerText="patients">
+            <h:outputText value="#{user.name}  #{user.surname}"/>
+        </p:column>
+        <p:column style="width:32px;text-align: center">
+            <p:commandButton update="form" action="#{homeController.UserPage()}" value="more information">
+            </p:commandButton>
+        </p:column>
+    </p:dataTable>
     </h:form>
+
+<!--        <p:column style="width:32px;text-align: center">-->
+<!--            <p:commandButton update=":form:carDetail" oncomplete="PF('carDialog').show()" icon="pi pi-search" title="View">-->
+<!--                <f:setPropertyActionListener value="#{car}" target="#{dtSelectionView.selectedCar}" />-->
+<!--            </p:commandButton>-->
+<!--        </p:column>-->
+
 </h:body>
 
 </html>

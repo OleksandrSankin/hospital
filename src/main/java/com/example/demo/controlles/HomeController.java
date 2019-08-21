@@ -212,6 +212,10 @@ public class HomeController {
         return "userPage.xhtml?faces-redirect=true";
     }
 
+    public String DoctorsPage(){
+        return "doctorsPage.xhtml?faces-redirect=true";
+    }
+
     public String ChangeSomeInformation() {
         return "changeSomeInformation.xhtml?faces-redirect=true";
     }

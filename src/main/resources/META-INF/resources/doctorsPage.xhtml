@@ -25,20 +25,24 @@
                 <p:commandButton value="Редактировать данные" action="#{homeController.ChangeSomeInformation()}"/>
             </div>
             <div class="ui-g-2" style="padding-top: 3%">
-                <p:commandButton value="Выход" onclick="window.location.href='logout'" />
+                <p:commandButton value="Выход" onclick="window.location.href='logout'"/>
             </div>
         </div>
     </h:form>
     <!--////////////////////////////-->
     <h3>Patients</h3>
-    <p:dataTable var="user" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="550"
-                 value="#{homeController.userInformation}">
-
-        <p:column headerText="patients" footerText="Patient">
-            <h:outputText value="#{user.name}  #{user.surname}"/>
-        </p:column>
-
-    </p:dataTable>
+    <h:form id="form">
+        <p:dataTable var="user" scrollRows="20" scrollable="true" liveScroll="true" scrollHeight="550"
+                     value="#{homeController.userInformation}">
+            <p:column headerText="patients">
+                <h:outputText value="#{user.name}  #{user.surname}"/>
+            </p:column>
+            <p:column style="width:200px;text-align: center">
+                <p:commandButton update="form" action="#{homeController.UserPage()}" value="о пациенте">
+                </p:commandButton>
+            </p:column>
+        </p:dataTable>
+    </h:form>
 
     <!--////////////////////////////-->
     <h:form>

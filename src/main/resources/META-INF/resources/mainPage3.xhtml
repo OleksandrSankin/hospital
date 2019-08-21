@@ -12,44 +12,23 @@
 </h:head>
 
 <h:body>
-    <h:form>
-        <h:outputText value="mainpage3"/>
+    <h:form id="form">
 
-        <!--        <p:dialog visible="true" widgetvar="Registr1">-->
-        <!--            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">-->
-        <!--                <p:outputLabel for="phoneWithExt" value=" Номер телефона:"/>-->
-        <!--                <p:inputMask id="phoneWithExt" value="#{homeController.phone}" mask="(999) 999-99-99"/>-->
-<!--                        <p:commandButton value="OK"-->
-<!--                                         oncomplete="PF('Registr1').hide(); PF('Registr2').show()"/>-->
-        <!--            </h:panelGrid>-->
-        <!--        </p:dialog>-->
+        <h:panelGrid columns="3" cellpadding="15" style="margin-bottom:200px">
+            <h:outputText value="Имя: "/>
+            <h:outputText value="#{homeController.name}"/>
+            <p:commandButton value="изменить" onclick="PF('dlgName').show();"/>
+
+            <h:outputText value="Фамилия: "/>
+            <h:outputText value="#{homeController.surname}"/>
+        </h:panelGrid>
 
 
-        <!--        <p:dialog  widgetVar="Registr2">-->
-        <!--            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">-->
-        <!--                <p:outputLabel value="Код из смс:"/>-->
-        <!--                <p:inputText value=" #{homeController.kod}"/>-->
-        <!--                <p:commandButton value="OK" oncomplete="PF('Registr2').hide()"/>-->
-        <!--            </h:panelGrid>-->
-        <!--        </p:dialog>-->
+        <p:dialog header="Введите новое имя" widgetVar="dlgName" minHeight="40">
+            <p:inputText placeholder="Введите новое имя" value="#{homeController.name}"/>
+            <p:commandButton value="изменить" action="#{homeController.saveUser()}" oncomplete="PF('dlhName').hide();" update="form" />
+        </p:dialog>
 
-        <h:form>
-            <p:dialog widgetVar="Registr1" visible="true" closable="false">
-                <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-                    <p:outputLabel for="phoneWithExt" value=" Номер телефона:"/>
-                    <p:inputMask id="phoneWithExt" value="#{homeController.phone}" mask="(999) 999-99-99"/>
-                    <p:commandButton value="Готово" oncomplete="PF('Registr1').hide(); PF('Registr2').show()"/>
-                </h:panelGrid>
-            </p:dialog>
-
-            <p:dialog  widgetVar="Registr2" closable="false">
-                <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-                    <p:outputLabel value="Код из смс:"/>
-                    <p:inputText value=" #{homeController.kod}"/>
-                    <p:commandButton value="Готово" oncomplete="PF('Registr2').hide();"/>
-                </h:panelGrid>
-            </p:dialog>
-        </h:form>
 
     </h:form>
 </h:body>

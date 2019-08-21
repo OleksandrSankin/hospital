@@ -12,76 +12,102 @@
 </h:head>
 
 <h:body>
-     <h:form>
-    <div class="ui-g">
-        <div class="ui-g-3">
-            <h:graphicImage library="images" name="tucnak.png" width="43%"/>
+    <h:form>
+        <div class="ui-g">
+            <div class="ui-g-3">
+                <h:graphicImage library="images" name="tucnak.png" width="43%"/>
+            </div>
+            <div class="ui-g-3"></div>
+            <div class="ui-g-2" style="padding-top: 3%">
+                <p:commandButton value="Главная страница" action="#{homeController.Home()}"/>
+            </div>
+            <div class="ui-g-2" style="padding-top: 3%">
+                <p:commandButton value="Редактировать данные" action="#{homeController.ChangeSomeInformation()}"/>
+            </div>
+            <div class="ui-g-2" style="padding-top: 3%">
+                <p:commandButton value="Выход"/>
+            </div>
         </div>
-        <div class="ui-g-3"></div>
-        <div class="ui-g-2" style="padding-top: 3%">
-            <p:commandButton value="Главная страница" action="#{homeController.Home()}"/>
-        </div>
-        <div class="ui-g-2" style="padding-top: 3%">
-            <p:commandButton value="Редактировать данные" action="#{homeController.ChangeSomeInformation()}"/>
-        </div>
-        <div class="ui-g-2" style="padding-top: 3%">
-            <p:commandButton value="Выход" />
-        </div>
-    </div>
-</h:form>
+    </h:form>
     <!--////////////////////////////-->
 
 
-    <div class="box" style=" background-image: linear-gradient(lavender, bisque) " align="center">
+    <div class="box" style=" height: 800px; background-image: linear-gradient(lavender, bisque) " align="center">
+        <h:form id="form">
+
+            <h:panelGrid columns="1" cellpadding="15" style="margin-bottom:200px">
+                <h:form>
+                    <h:outputText value="Имя: "/>
+                    <h:outputText value="#{homeController.name}"/>
+                    <p:commandButton value="изменить" onclick="PF('dlgName').show();"
+                                     style="margin-bottom: 22px; margin-top: 22px; margin-left: 600px; color: lavender"/>
+                </h:form>
+
+                <h:form>
+                    <h:outputText value="Фамилия: "/>
+                    <h:outputText value="#{homeController.surname}"/>
+                    <p:commandButton value="изменить" onclick="PF('dlgSrn').show();"
+                                     style="margin-bottom: 22px; margin-left: 570px; color:lavender"/>
+                </h:form>
+
+                <h:form style="margin-bottom: 22px">
+                    <h:outputText value="E-mail: "/>
+                    <h:outputText value="#{homeController.email}"/>
+                    <p:commandButton value="изменить" onclick="PF('dlgMail').show();"
+                                     style="margin-bottom: 22px; margin-left: 590px; color: lavender"/>
+                </h:form>
+
+                <h:form style="margin-bottom: 29px">
+                    <h:outputText value="Номер телефона: " />
+                    <h:outputText value="#{homeController.phone}" />
+                </h:form>
 
 
-        <h:panelGrid columns="1" cellpadding="15" style="margin-bottom:200px">
-            <h:form>
-                <h:outputText value="Имя: "/>
-                <h:outputText value="#{homeController.name}"/>
-            </h:form>
+                <h:form style="margin-bottom: 22px">
+                    <h:outputText value="Дата рождения: "/>
+                    <h:outputText value="#{homeController.date}">
+                        <f:convertDateTime pattern="dd.MM.yyyy" />
+                    </h:outputText>
+                </h:form>
 
-            <h:form>
-                <h:outputText value="Фамилия: "/>
-                <h:outputText value="#{homeController.surname}"/>
-            </h:form>
+                <h:form style="margin-bottom: 22px">
+                    <p:outputLabel value="Пол: "/>
+                    <h:outputText value="#{homeController.gender}" />
+                </h:form>
 
-            <h:form>
-                <h:outputText value="E-mail: "/>
-                <h:outputText value="#{homeController.email}"/>
-            </h:form>
+                <h:form style="margin-bottom: 22px">
+                    <p:outputLabel value="Город: "/>
+                    <h:outputText value="#{homeController.city}"/>
+                </h:form>
 
-            <h:form>
-                <h:outputText value="Номер телефона: "/>
-                <h:outputText value="#{homeController.phone}"/>
-            </h:form>
+                <h:form>
+                    <p:commandButton value="Изменить пароль " type="button" onclick="PF('changePass1').show();"
+                                     style="margin-top: 55px; color: bisque;"/>
+                </h:form>
 
-
-            <h:form>
-                <h:outputText value="Дата рождения: "/>
-                <h:outputText value="#{homeController.date}">
-                    <f:convertDateTime pattern="dd.MM.yyyy"/>
-                </h:outputText>
-            </h:form>
-
-            <h:form>
-                <p:outputLabel value="Пол: "/>
-                <h:outputText value="#{homeController.gender}"/>
-            </h:form>
-
-            <h:form>
-                <p:outputLabel value="Город: "/>
-                <h:outputText value="#{homeController.city}"/>
-            </h:form>
-
-            <h:form>
-                <p:commandButton value="Изменить пароль " type="button" onclick="PF('changePass1').show();" />
-            </h:form>
-
-        </h:panelGrid>
-
+            </h:panelGrid>
+        </h:form>
     </div>
 
+    <h:form>
+        <p:dialog header="Введите новое имя" widgetVar="dlgName" minHeight="40">
+            <p:inputText placeholder="Введите новое имя" value="#{homeController.name}"/>
+            <p:commandButton value="изменить" action="#{homeController.saveUser()}" oncomplete="PF('dlgName').hide();"
+                             update="form"/>
+        </p:dialog>
+
+        <p:dialog header="Введите новую фамилию" widgetVar="dlgSrn" minHeight="40">
+            <p:inputText placeholder="Введите новую фамилию" value="#{homeController.surname}"/>
+            <p:commandButton value="изменить" action="#{homeController.saveUser()}" oncomplete="PF('dlgSrn').hide();"
+                             update="form"/>
+        </p:dialog>
+
+        <p:dialog header="Введите новый почтовый адрес" widgetVar="dlgMail" minHeight="40">
+            <p:inputText placeholder="Введите новый почтовый адрес" value="#{homeController.email}"/>
+            <p:commandButton value="изменить" action="#{homeController.saveUser()}" oncomplete="PF('dlgMail').hide();"
+                             update="form"/>
+        </p:dialog>
+    </h:form>
     <!--/////////////////-->
     <h:form>
         <div class="p-col">
@@ -126,7 +152,7 @@
                 </h:panelGrid>
             </p:dialog>
 
-            <p:growl id="message" showDetail="true" />
+            <p:growl id="message" showDetail="true"/>
 
             <p:dialog id="registrace2" widgetVar="changePassword2">
                 <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
@@ -136,7 +162,7 @@
                                 weakLabel="Слабый" goodLabel="Средний уровень" strongLabel="Сильный"/>
                     <p:outputLabel value="Повторите новый пароль: "/>
                     <p:password value="#{homeController.newPassword2}"/>
-                    <p:commandButton value="OK"  action="#{homeController.PositiveAnswer()}" update="message" />
+                    <p:commandButton value="OK" action="#{homeController.PositiveAnswer()}" update="message"/>
                 </h:panelGrid>
             </p:dialog>
 

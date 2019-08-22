@@ -6,6 +6,7 @@ import com.example.demo.repos.CarRepository;
 import com.example.demo.repos.SecurityRole;
 import com.example.demo.repos.SiteUser;
 import com.example.demo.repos.UserRepository;
+import com.example.demo.sms.SmsSender;
 import org.primefaces.event.FlowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +18,7 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Named
 public class HomeController {
@@ -56,11 +58,12 @@ public class HomeController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private SmsSender smsSender;
 
     @PostConstruct
     private void init() {
         createAdminUserIfNotExists();
-
         List<SiteUser> all = userRepository.findAll();
 
         for (int i = 0; i < all.size(); i++) {
@@ -272,4 +275,41 @@ public class HomeController {
         }
     }
 
+    private String wrongSmsCode;
+
+    private String smsCode = "";
+
+    public String getWrongSmsCode() {
+        return wrongSmsCode;
+    }
+
+    public void setWrongSmsCode(String wrongSmsCode) {
+        this.wrongSmsCode = wrongSmsCode;
+    }
+
+    public void showMessageAboutWrongSmsCode() {
+        if (wrongSmsCode != null && !wrongSmsCode.trim().isEmpty()) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    "", "Неправильный смс код"));
+        }
+    }
+
+    public void sendSms() {
+        smsCode = generateSmsCode();
+        smsSender.sendSms(smsCode);
+    }
+
+    public String checkSms() {
+        if (!smsCode.equals(kod)) {
+            return "registration.xhtml?faces-redirect=true&wrongSmsCode=true";
+        }
+
+        return "registration.xhtml";
+    }
+
+    private String generateSmsCode() {
+        Random random = new Random(System.currentTimeMillis());
+        return String.valueOf(random.nextInt(100000));
+    }
 }

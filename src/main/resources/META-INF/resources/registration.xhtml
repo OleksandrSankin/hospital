@@ -12,6 +12,13 @@
 </h:head>
 
 <h:body>
+    <p:growl id="growl1" life="5000" keepAlive="true"/>
+
+    <f:metadata>
+        <f:viewParam name="wrongSmsCode" value="#{homeController.wrongSmsCode}"/>
+        <f:viewAction action="#{homeController.showMessageAboutWrongSmsCode}"/>
+    </f:metadata>
+
     <h:form>
         <div class="ui-g">
             <div class="ui-g-3">
@@ -119,26 +126,26 @@
                 <p:commandButton value="OK"/>
             </h:panelGrid>
         </p:dialog>
+    </h:form>
 
+    <h:form>
+        <p:dialog widgetVar="Registr1" visible="true" closable="false">
+            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                <p:outputLabel for="phoneWithExt" value=" Номер телефона:"/>
+                <p:inputMask id="phoneWithExt" value="#{homeController.phone}" mask="(999) 999-99-99"/>
+                <p:commandButton value="Готово" action="#{homeController.sendSms()}" oncomplete="PF('Registr1').hide(); PF('Registr2').show()"/>
+            </h:panelGrid>
+        </p:dialog>
+    </h:form>
 
-        <h:form>
-            <p:dialog widgetVar="Registr1" visible="true" closable="false">
-                <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-                    <p:outputLabel for="phoneWithExt" value=" Номер телефона:"/>
-                    <p:inputMask id="phoneWithExt" value="#{homeController.phone}" mask="(999) 999-99-99"/>
-                    <p:commandButton value="Готово" oncomplete="PF('Registr1').hide(); PF('Registr2').show()"/>
-                </h:panelGrid>
-            </p:dialog>
-
-            <p:dialog  widgetVar="Registr2" closable="false">
-                <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
-                    <p:outputLabel value="Код из смс:"/>
-                    <p:inputText value=" #{homeController.kod}"/>
-                    <p:commandButton value="Готово" oncomplete="PF('Registr2').hide();"/>
-                </h:panelGrid>
-            </p:dialog>
-        </h:form>
-
+    <h:form>
+        <p:dialog widgetVar="Registr2" closable="false">
+            <h:panelGrid colums="2" style="margin-left: auto; margin-right: auto; margin-top: 5%">
+                <p:outputLabel value="Код из смс:"/>
+                <p:inputText value="#{homeController.kod}"/>
+                <p:commandButton value="Готово" action="#{homeController.checkSms()}" oncomplete="PF('Registr2').hide();"/>
+            </h:panelGrid>
+        </p:dialog>
     </h:form>
 </h:body>
 
